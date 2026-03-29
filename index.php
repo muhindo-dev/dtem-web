@@ -20,9 +20,9 @@ $stmt = $pdo->query("SELECT p.*, pc.category as category_name FROM products p LE
 $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 // Fetch stats
-$totalMembers = $pdo->query("SELECT COUNT(*) FROM users WHERE is_dtehm_member = 1")->fetchColumn();
+$totalMembers = $pdo->query("SELECT COUNT(*) FROM users WHERE is_dtehm_member = 'Yes'")->fetchColumn();
 $totalProducts = $pdo->query("SELECT COUNT(*) FROM products WHERE status = 'Active'")->fetchColumn();
-$totalMemberships = $pdo->query("SELECT COUNT(*) FROM dtehm_memberships WHERE status = 'paid'")->fetchColumn();
+$totalMemberships = $pdo->query("SELECT COUNT(*) FROM dtehm_memberships WHERE status = 'CONFIRMED'")->fetchColumn();
 
 // Fetch latest news
 $stmt = $pdo->query("SELECT * FROM news_posts WHERE status = 'published' ORDER BY published_at DESC LIMIT 3");
@@ -52,8 +52,8 @@ $teamMembers = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     Holistic healthcare solutions for a healthier Uganda.
                 </p>
                 <div class="hero-buttons">
-                    <a href="shop.php" class="btn-hero btn-hero-primary">
-                        <i class="fas fa-shopping-bag me-2"></i><span>Browse Products</span>
+                    <a href="https://play.google.com/store/apps/details?id=com.dtehm.insurance" target="_blank" rel="noopener noreferrer" class="btn-hero btn-hero-primary">
+                        <i class="fab fa-google-play me-2"></i><span>Download App</span>
                     </a>
                     <a href="about.php" class="btn-hero btn-hero-outline">
                         <i class="fas fa-info-circle me-2"></i><span>Learn More</span>
@@ -167,7 +167,7 @@ $teamMembers = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </div>
             <div class="row g-4">
                 <?php foreach ($products as $product): ?>
-                <div class="col-lg-6 col-md-6">
+                <div class="col-6 col-md-4 col-lg-3">
                     <a href="product-detail.php?id=<?php echo $product['id']; ?>" style="text-decoration: none; color: inherit; display: block;">
                     <div class="product-card">
                         <div class="product-image">
@@ -431,8 +431,8 @@ $teamMembers = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         insurance coverage, investment opportunities, and earn through our referral network.
                     </p>
                     <div class="cta-inline-btns" style="justify-content: center;">
-                        <a href="enroll.php" class="btn-green-custom" style="padding: 0.9rem 2.5rem; font-size: 1rem;">
-                            <i class="fas fa-user-plus me-2"></i>Become a Member
+                        <a href="https://play.google.com/store/apps/details?id=com.dtehm.insurance" target="_blank" rel="noopener noreferrer" class="btn-green-custom" style="padding: 0.9rem 2.5rem; font-size: 1rem;">
+                            <i class="fab fa-google-play me-2"></i>Get the App
                         </a>
                         <a href="contact.php" style="display: inline-block; background: transparent; color: var(--white); border: 2px solid var(--white); padding: 0.9rem 2.5rem; font-weight: 600; border-radius: 6px; text-decoration: none; transition: all 0.3s; font-size: 1rem;" onmouseover="this.style.background='var(--white)'; this.style.color='var(--primary-blue)'" onmouseout="this.style.background='transparent'; this.style.color='var(--white)'">
                             <i class="fas fa-envelope me-2"></i>Contact Us

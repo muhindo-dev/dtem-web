@@ -131,8 +131,8 @@ $projects = $pdo->query("SELECT * FROM projects WHERE status = 'active' ORDER BY
                                 <small style="color: var(--gray-text);"><?php echo $progressPercent; ?>% funded</small>
                             </div>
 
-                            <a href="enroll.php" class="btn-primary-custom" style="display: block; text-align: center; padding: 0.8rem;">
-                                <i class="fas fa-coins me-2"></i>Invest Now
+                            <a href="https://play.google.com/store/apps/details?id=com.dtehm.insurance" target="_blank" rel="noopener noreferrer" class="btn-primary-custom" style="display: block; text-align: center; padding: 0.8rem;">
+                                <i class="fab fa-google-play me-2"></i>Invest via App
                             </a>
                         </div>
                     </div>
@@ -149,7 +149,7 @@ $projects = $pdo->query("SELECT * FROM projects WHERE status = 'active' ORDER BY
             <h2 class="section-heading" style="color: var(--white);">Start Your Investment Journey</h2>
             <p style="color: rgba(255,255,255,0.9); margin-bottom: 2rem;">Join DTEHM and start investing in projects that grow your wealth and impact communities.</p>
             <div class="cta-inline-btns" style="justify-content: center;">
-                <a href="enroll.php" class="btn-green-custom" style="padding: 0.8rem 2rem;"><i class="fas fa-user-plus me-2"></i>Join DTEHM</a>
+                <a href="https://play.google.com/store/apps/details?id=com.dtehm.insurance" target="_blank" rel="noopener noreferrer" class="btn-green-custom" style="padding: 0.8rem 2rem;"><i class="fab fa-google-play me-2"></i>Get the App</a>
                 <a href="contact.php" style="display: inline-block; background: transparent; color: var(--white); border: 2px solid var(--white); padding: 0.8rem 2rem; font-weight: 600; border-radius: 6px; text-decoration: none;"><i class="fas fa-phone me-2"></i>Contact Us</a>
             </div>
         </div>

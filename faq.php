@@ -160,7 +160,7 @@ include 'includes/header.php';
                             </div>
                             <div id="faq4" class="collapse" data-bs-parent="#faqMembership">
                                 <div class="faq-answer">
-                                    You can register through our <a href="enroll.php">enrollment page</a> on the website or download the DTEHM mobile app. You will need a sponsor code from an existing member to join.
+                                    You can register by downloading the <a href="https://play.google.com/store/apps/details?id=com.dtehm.insurance" target="_blank" rel="noopener noreferrer">DTEHM mobile app</a> from the Google Play Store. You will need a sponsor code from an existing member to join. You will need a sponsor code from an existing member to join.
                                 </div>
                             </div>
                         </div>

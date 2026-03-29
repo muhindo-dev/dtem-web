@@ -75,7 +75,7 @@ $socialLinks = getSocialLinks();
                     <div class="footer-section">
                         <h4>Get Involved</h4>
                         <ul>
-                            <li><a href="enroll.php">Join DTEHM</a></li>
+                            <li><a href="https://play.google.com/store/apps/details?id=com.dtehm.insurance" target="_blank" rel="noopener noreferrer">Get the App</a></li>
                             <li><a href="donation-step1.php">Donate</a></li>
                             <li><a href="events.php">Events</a></li>
                             <li><a href="causes.php">Causes</a></li>

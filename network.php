@@ -189,7 +189,7 @@ $totalSponsors = $pdo->query("SELECT COUNT(DISTINCT sponsor_id) FROM users WHERE
             <h2 class="section-heading" style="color: var(--white);">Join the DTEHM Network Today</h2>
             <p style="color: rgba(255,255,255,0.9); margin-bottom: 2rem;">Start your journey as a sponsor, stockist, or network leader.</p>
             <div class="cta-inline-btns" style="justify-content: center;">
-                <a href="enroll.php" class="btn-green-custom" style="padding: 0.8rem 2rem;"><i class="fas fa-user-plus me-2"></i>Join Now</a>
+                <a href="https://play.google.com/store/apps/details?id=com.dtehm.insurance" target="_blank" rel="noopener noreferrer" class="btn-green-custom" style="padding: 0.8rem 2rem;"><i class="fab fa-google-play me-2"></i>Get the App</a>
                 <a href="contact.php" style="display: inline-block; background: transparent; color: var(--white); border: 2px solid var(--white); padding: 0.8rem 2rem; font-weight: 600; border-radius: 6px; text-decoration: none;"><i class="fas fa-phone me-2"></i>Contact Us</a>
             </div>
         </div>

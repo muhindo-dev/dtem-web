@@ -17,7 +17,7 @@ include 'includes/header.php';
 $stmt = $pdo->query("SELECT * FROM team_members WHERE status = 'active' ORDER BY display_order ASC");
 $teamMembers = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-$totalMembers = $pdo->query("SELECT COUNT(*) FROM users WHERE is_dtehm_member = 1")->fetchColumn();
+$totalMembers = $pdo->query("SELECT COUNT(*) FROM users WHERE is_dtehm_member = 'Yes'")->fetchColumn();
 $totalProducts = $pdo->query("SELECT COUNT(*) FROM products WHERE status = 'Active'")->fetchColumn();
 ?>
 
@@ -247,7 +247,7 @@ $totalProducts = $pdo->query("SELECT COUNT(*) FROM products WHERE status = 'Acti
             <h2 class="section-heading" style="color: var(--white);">Ready to Transform Your Health?</h2>
             <p style="color: rgba(255,255,255,0.9); font-size: 1.1rem; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">Join DTEHM Health Ministries and access holistic healthcare solutions, investment opportunities, and a supportive community.</p>
             <div class="cta-inline-btns" style="justify-content: center;">
-                <a href="enroll.php" class="btn-green-custom" style="padding: 0.8rem 2rem;"><i class="fas fa-user-plus me-2"></i>Join DTEHM</a>
+                <a href="https://play.google.com/store/apps/details?id=com.dtehm.insurance" target="_blank" rel="noopener noreferrer" class="btn-green-custom" style="padding: 0.8rem 2rem;"><i class="fab fa-google-play me-2"></i>Get the App</a>
                 <a href="contact.php" style="display: inline-block; background: transparent; color: var(--white); border: 2px solid var(--white); padding: 0.8rem 2rem; font-weight: 600; border-radius: 6px; text-decoration: none;"><i class="fas fa-envelope me-2"></i>Contact Us</a>
             </div>
         </div>

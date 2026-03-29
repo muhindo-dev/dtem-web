@@ -184,7 +184,7 @@ $customHeadCode = getSetting('custom_head_code');
                         <a class="nav-link <?php echo ($currentPage ?? '') == 'contact' ? 'active' : ''; ?>" href="contact.php">Contact</a>
                     </li>
                     <li class="nav-item ms-lg-2">
-                        <a class="btn-cta-nav" href="enroll.php"><i class="fas fa-user-plus me-1"></i>Join DTEHM</a>
+                        <a class="btn-cta-nav" href="https://play.google.com/store/apps/details?id=com.dtehm.insurance" target="_blank" rel="noopener noreferrer"><i class="fab fa-google-play me-1"></i>Get the App</a>
                     </li>
                 </ul>
             </div>

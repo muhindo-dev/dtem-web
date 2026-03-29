@@ -235,7 +235,7 @@ $currency = getCurrency();
             </div>
             <div class="row g-4">
                 <?php foreach ($relatedProducts as $rp): ?>
-                <div class="col-lg-6 col-md-6">
+                <div class="col-6 col-md-4 col-lg-3">
                     <a href="product-detail.php?id=<?php echo $rp['id']; ?>" style="text-decoration: none;">
                         <div class="product-card">
                             <div class="product-image">
