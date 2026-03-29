@@ -1,0 +1,27 @@
+-- Events Module Database Schema
+CREATE TABLE IF NOT EXISTS events (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    title VARCHAR(200) NOT NULL,
+    slug VARCHAR(220) UNIQUE NOT NULL,
+    description LONGTEXT NOT NULL,
+    event_image VARCHAR(255),
+    event_type VARCHAR(50) NOT NULL,
+    start_datetime DATETIME NOT NULL,
+    end_datetime DATETIME NOT NULL,
+    venue_name VARCHAR(200) NOT NULL,
+    venue_address TEXT,
+    registration_required BOOLEAN DEFAULT FALSE,
+    registration_link VARCHAR(255),
+    max_capacity INT DEFAULT 0,
+    current_registrations INT DEFAULT 0,
+    status ENUM('upcoming', 'ongoing', 'completed', 'cancelled') DEFAULT 'upcoming',
+    views INT DEFAULT 0,
+    created_by INT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (created_by) REFERENCES admin_users(id) ON DELETE CASCADE,
+    INDEX idx_status (status),
+    INDEX idx_event_type (event_type),
+    INDEX idx_start_datetime (start_datetime),
+    FULLTEXT INDEX idx_search (title, description, venue_name)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Enrollment Test</title>
+    <style>
+        body { font-family: Arial; padding: 2rem; }
+        .btn { padding: 1rem; background: #000; color: #fff; border: none; cursor: pointer; margin: 0.5rem; }
+        .result { padding: 1rem; margin: 1rem 0; border: 2px solid #000; }
+        .success { background: #000; color: #fff; }
+        .error { background: #fff; color: #000; border-color: #f00; }
+        input, select, textarea { display: block; width: 100%; padding: 0.5rem; margin: 0.5rem 0; border: 2px solid #000; }
+    </style>
+</head>
+<body>
+    <h1>Enrollment Form Test</h1>
+    
+    <button class="btn" onclick="testConnection()">Test Connection</button>
+    <button class="btn" onclick="testEnrollment()">Test Enrollment</button>
+    
+    <div id="result"></div>
+    
+    <hr>
+    
+    <h2>Manual Test Form</h2>
+    <form id="testForm">
+        <input type="text" id="name" placeholder="Name" value="Test User" required>
+        <input type="email" id="email" placeholder="Email" value="test@example.com" required>
+        <input type="tel" id="phone" placeholder="Phone" value="+256700000000" required>
+        <select id="course" required>
+            <option value="">Select Course</option>
+            <option value="web-design">Web Design</option>
+            <option value="web-development">Web Development</option>
+            <option value="mobile-app">Mobile App</option>
+        </select>
+        <textarea id="message" placeholder="Message">Test message</textarea>
+        <button type="submit" class="btn">Submit Test</button>
+    </form>
+
+    <script>
+        function showResult(text, isSuccess) {
+            const div = document.getElementById('result');
+            div.textContent = text;
+            div.className = 'result ' + (isSuccess ? 'success' : 'error');
+        }
+
+        function testConnection() {
+            showResult('Testing connection...', true);
+            fetch('test-connection.php')
+                .then(response => response.json())
+                .then(data => {
+                    showResult('Connection successful: ' + JSON.stringify(data), true);
+                })
+                .catch(error => {
+                    showResult('Connection failed: ' + error.message, false);
+                });
+        }
+
+        function testEnrollment() {
+            showResult('Testing enrollment...', true);
+            const formData = new FormData();
+            formData.append('name', 'Test User');
+            formData.append('email', 'test' + Date.now() + '@example.com');
+            formData.append('phone', '+256700000000');
+            formData.append('course', 'web-design');
+            formData.append('message', 'Test enrollment at ' + new Date().toLocaleString());
+
+            fetch('enroll.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text())
+            .then(text => {
+                console.log('Raw response:', text);
+                const data = JSON.parse(text);
+                showResult('Enrollment response: ' + data.message, data.success);
+            })
+            .catch(error => {
+                showResult('Enrollment failed: ' + error.message, false);
+            });
+        }
+
+        document.getElementById('testForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData();
+            formData.append('name', document.getElementById('name').value);
+            formData.append('email', document.getElementById('email').value);
+            formData.append('phone', document.getElementById('phone').value);
+            formData.append('course', document.getElementById('course').value);
+            formData.append('message', document.getElementById('message').value);
+
+            showResult('Submitting...', true);
+
+            fetch('enroll.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                console.log('Response status:', response.status);
+                return response.text();
+            })
+            .then(text => {
+                console.log('Raw response:', text);
+                try {
+                    const data = JSON.parse(text);
+                    showResult(data.message, data.success);
+                } catch (e) {
+                    showResult('Parse error: ' + e.message + ' | Response: ' + text, false);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                showResult('Error: ' + error.message, false);
+            });
+        });
+    </script>
+</body>
+</html>

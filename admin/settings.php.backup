@@ -1,0 +1,714 @@
+<?php
+/**
+ * Site Settings Management
+ */
+require_once 'config/auth.php';
+require_once 'config/crud-helper.php';
+
+requireAdmin();
+checkSessionTimeout();
+
+$currentAdmin = getCurrentAdmin();
+$currentPage = 'settings';
+$pageTitle = 'Site Settings';
+
+$pdo = getDBConnection();
+
+// Handle form submission
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $errors = [];
+    $success = true;
+    
+    // Get all posted data
+    $settings = $_POST['settings'] ?? [];
+    
+    // Handle logo upload
+    if (isset($_FILES['site_logo']) && $_FILES['site_logo']['error'] === UPLOAD_ERR_OK) {
+        $allowedTypes = ['jpg', 'jpeg', 'png', 'svg'];
+        $fileExt = strtolower(pathinfo($_FILES['site_logo']['name'], PATHINFO_EXTENSION));
+        
+        if (!in_array($fileExt, $allowedTypes)) {
+            $errors[] = 'Invalid logo format. Allowed: JPG, PNG, SVG.';
+        } elseif ($_FILES['site_logo']['size'] > 2 * 1024 * 1024) {
+            $errors[] = 'Logo size must be less than 2MB.';
+        } else {
+            $uploadDir = '../uploads/site/';
+            if (!is_dir($uploadDir)) {
+                mkdir($uploadDir, 0755, true);
+            }
+            
+            $newFileName = 'logo_' . time() . '.' . $fileExt;
+            if (move_uploaded_file($_FILES['site_logo']['tmp_name'], $uploadDir . $newFileName)) {
+                // Delete old logo
+                $oldLogo = getSetting('site_logo');
+                if ($oldLogo && file_exists('../uploads/' . $oldLogo)) {
+                    unlink('../uploads/' . $oldLogo);
+                }
+                $settings['site_logo'] = 'site/' . $newFileName;
+            }
+        }
+    }
+    
+    // Handle favicon upload
+    if (isset($_FILES['site_favicon']) && $_FILES['site_favicon']['error'] === UPLOAD_ERR_OK) {
+        $allowedTypes = ['ico', 'png'];
+        $fileExt = strtolower(pathinfo($_FILES['site_favicon']['name'], PATHINFO_EXTENSION));
+        
+        if (!in_array($fileExt, $allowedTypes)) {
+            $errors[] = 'Invalid favicon format. Allowed: ICO, PNG.';
+        } elseif ($_FILES['site_favicon']['size'] > 500 * 1024) {
+            $errors[] = 'Favicon size must be less than 500KB.';
+        } else {
+            $uploadDir = '../uploads/site/';
+            if (!is_dir($uploadDir)) {
+                mkdir($uploadDir, 0755, true);
+            }
+            
+            $newFileName = 'favicon_' . time() . '.' . $fileExt;
+            if (move_uploaded_file($_FILES['site_favicon']['tmp_name'], $uploadDir . $newFileName)) {
+                // Delete old favicon
+                $oldFavicon = getSetting('site_favicon');
+                if ($oldFavicon && file_exists('../uploads/' . $oldFavicon)) {
+                    unlink('../uploads/' . $oldFavicon);
+                }
+                $settings['site_favicon'] = 'site/' . $newFileName;
+            }
+        }
+    }
+    
+    // Update all settings
+    if (empty($errors)) {
+        foreach ($settings as $key => $value) {
+            $stmt = $pdo->prepare("
+                INSERT INTO site_settings (setting_key, setting_value) 
+                VALUES (?, ?) 
+                ON DUPLICATE KEY UPDATE setting_value = ?
+            ");
+            if (!$stmt->execute([$key, $value, $value])) {
+                $success = false;
+            }
+        }
+        
+        if ($success) {
+            $_SESSION['alert'] = ['type' => 'success', 'message' => 'Settings updated successfully.'];
+        } else {
+            $_SESSION['alert'] = ['type' => 'error', 'message' => 'Failed to update some settings.'];
+        }
+    } else {
+        $_SESSION['alert'] = ['type' => 'error', 'message' => implode('<br>', $errors)];
+    }
+    
+    header('Location: settings.php');
+    exit;
+}
+
+// Get all settings
+$stmt = $pdo->query("SELECT setting_key, setting_value FROM site_settings");
+$settings = [];
+while ($row = $stmt->fetch()) {
+    $settings[$row['setting_key']] = $row['setting_value'];
+}
+
+// Helper function
+function getSetting($key, $default = '') {
+    global $settings;
+    return $settings[$key] ?? $default;
+}
+
+include 'includes/header.php';
+?>
+
+<div class="admin-content">
+    <?php if (isset($_SESSION['alert'])): ?>
+        <div class="alert alert-<?php echo $_SESSION['alert']['type']; ?>">
+            <i class="fas fa-<?php echo $_SESSION['alert']['type'] == 'success' ? 'check-circle' : 'exclamation-circle'; ?>"></i>
+            <?php echo $_SESSION['alert']['message']; ?>
+        </div>
+        <?php unset($_SESSION['alert']); ?>
+    <?php endif; ?>
+    
+    <div class="content-header-compact">
+        <h1><i class="fas fa-cog"></i> Site Settings</h1>
+    </div>
+
+    <form method="POST" action="" enctype="multipart/form-data">
+        <div class="grid-layout">
+            <div class="grid-main">
+                <!-- General Information -->
+                <div class="card card-compact">
+                    <div class="card-header">
+                        <h3><i class="fas fa-info-circle"></i> General Information</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="site_name">Site Name <span class="required">*</span></label>
+                            <input 
+                                type="text" 
+                                id="site_name" 
+                                name="settings[site_name]" 
+                                class="form-control"
+                                value="<?php echo htmlspecialchars(getSetting('site_name')); ?>"
+                                required
+                            >
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="site_tagline">Tagline</label>
+                            <input 
+                                type="text" 
+                                id="site_tagline" 
+                                name="settings[site_tagline]" 
+                                class="form-control"
+                                value="<?php echo htmlspecialchars(getSetting('site_tagline')); ?>"
+                                placeholder="Your site tagline or motto"
+                            >
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="site_description">Description</label>
+                            <textarea 
+                                id="site_description" 
+                                name="settings[site_description]" 
+                                class="form-control"
+                                rows="3"
+                                placeholder="Brief description of your organization"
+                            ><?php echo htmlspecialchars(getSetting('site_description')); ?></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="footer_text">Footer Text</label>
+                            <input 
+                                type="text" 
+                                id="footer_text" 
+                                name="settings[footer_text]" 
+                                class="form-control"
+                                value="<?php echo htmlspecialchars(getSetting('footer_text')); ?>"
+                                placeholder="Copyright text for footer"
+                            >
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Information -->
+                <div class="card card-compact">
+                    <div class="card-header">
+                        <h3><i class="fas fa-address-book"></i> Contact Information</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="contact_email">Email</label>
+                                <input 
+                                    type="email" 
+                                    id="contact_email" 
+                                    name="settings[contact_email]" 
+                                    class="form-control"
+                                    value="<?php echo htmlspecialchars(getSetting('contact_email')); ?>"
+                                    placeholder="info@example.com"
+                                >
+                            </div>
+                            <div class="form-group">
+                                <label for="contact_phone">Phone</label>
+                                <input 
+                                    type="text" 
+                                    id="contact_phone" 
+                                    name="settings[contact_phone]" 
+                                    class="form-control"
+                                    value="<?php echo htmlspecialchars(getSetting('contact_phone')); ?>"
+                                    placeholder="+1 234 567 8900"
+                                >
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="contact_address">Address</label>
+                            <textarea 
+                                id="contact_address" 
+                                name="settings[contact_address]" 
+                                class="form-control"
+                                rows="3"
+                                placeholder="Full address"
+                            ><?php echo htmlspecialchars(getSetting('contact_address')); ?></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pesapal Payment Settings -->
+                <div class="card card-compact">
+                    <div class="card-header">
+                        <h3><i class="fas fa-credit-card"></i> Pesapal Payment Gateway</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="pesapal-notice" style="background: #e7f3ff; border: 1px solid #b3d7ff; padding: 0.75rem; margin-bottom: 1rem; font-size: 0.85rem;">
+                            <i class="fas fa-info-circle" style="color: #0066cc;"></i>
+                            <span>Get your API credentials from <a href="https://www.pesapal.com/dashboard" target="_blank" style="color: #0066cc;">Pesapal Dashboard</a>. Register your IPN URL at <a href="https://pay.pesapal.com/iframe/PesapalIframe3/IpnRegistration" target="_blank" style="color: #0066cc;">Pesapal IPN Registration</a>.</span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="pesapal_environment">Environment <span class="required">*</span></label>
+                            <select 
+                                id="pesapal_environment" 
+                                name="settings[pesapal_environment]" 
+                                class="form-control"
+                            >
+                                <option value="sandbox" <?php echo (getSetting('pesapal_environment', 'sandbox') == 'sandbox') ? 'selected' : ''; ?>>Sandbox (Testing)</option>
+                                <option value="live" <?php echo (getSetting('pesapal_environment') == 'live') ? 'selected' : ''; ?>>Live (Production)</option>
+                            </select>
+                            <small class="form-text">Use Sandbox for testing, Live for real payments</small>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="pesapal_consumer_key">Consumer Key <span class="required">*</span></label>
+                            <input 
+                                type="text" 
+                                id="pesapal_consumer_key" 
+                                name="settings[pesapal_consumer_key]" 
+                                class="form-control"
+                                value="<?php echo htmlspecialchars(getSetting('pesapal_consumer_key')); ?>"
+                                placeholder="Enter your Pesapal Consumer Key"
+                            >
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="pesapal_consumer_secret">Consumer Secret <span class="required">*</span></label>
+                            <input 
+                                type="password" 
+                                id="pesapal_consumer_secret" 
+                                name="settings[pesapal_consumer_secret]" 
+                                class="form-control"
+                                value="<?php echo htmlspecialchars(getSetting('pesapal_consumer_secret')); ?>"
+                                placeholder="Enter your Pesapal Consumer Secret"
+                            >
+                            <small class="form-text"><a href="#" onclick="togglePasswordVisibility('pesapal_consumer_secret'); return false;">Show/Hide</a></small>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="pesapal_ipn_id">IPN ID <span class="required">*</span></label>
+                            <input 
+                                type="text" 
+                                id="pesapal_ipn_id" 
+                                name="settings[pesapal_ipn_id]" 
+                                class="form-control"
+                                value="<?php echo htmlspecialchars(getSetting('pesapal_ipn_id')); ?>"
+                                placeholder="e.g., 84740ab4-3cd9-47da-8a4f-dd1db53494b5"
+                            >
+                            <small class="form-text">Notification ID received after registering your IPN URL</small>
+                        </div>
+                        
+                        <div class="ipn-url-display" style="background: #f8f9fa; border: 2px solid #dee2e6; padding: 0.75rem; margin-top: 1rem;">
+                            <label style="font-size: 0.8rem; color: #666; margin-bottom: 0.25rem; display: block;">Your IPN URL (register this with Pesapal):</label>
+                            <code style="font-size: 0.85rem; word-break: break-all;"><?php 
+                                $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http';
+                                $host = $_SERVER['HTTP_HOST'];
+                                echo $protocol . '://' . $host . '/ulfa/donation-ipn.php';
+                            ?></code>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Social Media Links -->
+                <div class="card card-compact">
+                    <div class="card-header">
+                        <h3><i class="fas fa-share-alt"></i> Social Media</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="facebook_url"><i class="fab fa-facebook"></i> Facebook</label>
+                            <input 
+                                type="url" 
+                                id="facebook_url" 
+                                name="settings[facebook_url]" 
+                                class="form-control"
+                                value="<?php echo htmlspecialchars(getSetting('facebook_url')); ?>"
+                                placeholder="https://facebook.com/yourpage"
+                            >
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="twitter_url"><i class="fab fa-twitter"></i> Twitter</label>
+                            <input 
+                                type="url" 
+                                id="twitter_url" 
+                                name="settings[twitter_url]" 
+                                class="form-control"
+                                value="<?php echo htmlspecialchars(getSetting('twitter_url')); ?>"
+                                placeholder="https://twitter.com/yourhandle"
+                            >
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="instagram_url"><i class="fab fa-instagram"></i> Instagram</label>
+                            <input 
+                                type="url" 
+                                id="instagram_url" 
+                                name="settings[instagram_url]" 
+                                class="form-control"
+                                value="<?php echo htmlspecialchars(getSetting('instagram_url')); ?>"
+                                placeholder="https://instagram.com/yourhandle"
+                            >
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="linkedin_url"><i class="fab fa-linkedin"></i> LinkedIn</label>
+                            <input 
+                                type="url" 
+                                id="linkedin_url" 
+                                name="settings[linkedin_url]" 
+                                class="form-control"
+                                value="<?php echo htmlspecialchars(getSetting('linkedin_url')); ?>"
+                                placeholder="https://linkedin.com/company/yourcompany"
+                            >
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="youtube_url"><i class="fab fa-youtube"></i> YouTube</label>
+                            <input 
+                                type="url" 
+                                id="youtube_url" 
+                                name="settings[youtube_url]" 
+                                class="form-control"
+                                value="<?php echo htmlspecialchars(getSetting('youtube_url')); ?>"
+                                placeholder="https://youtube.com/@yourchannel"
+                            >
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid-sidebar">
+                <!-- Site Logo -->
+                <div class="card card-compact">
+                    <div class="card-header">
+                        <h3><i class="fas fa-image"></i> Site Logo</h3>
+                    </div>
+                    <div class="card-body">
+                        <?php if (getSetting('site_logo')): ?>
+                            <div class="logo-preview">
+                                <img src="../uploads/<?php echo htmlspecialchars(getSetting('site_logo')); ?>" alt="Logo">
+                            </div>
+                        <?php else: ?>
+                            <div class="logo-preview empty">
+                                <i class="fas fa-image"></i>
+                                <span>No logo uploaded</span>
+                            </div>
+                        <?php endif; ?>
+                        <input 
+                            type="file" 
+                            id="site_logo" 
+                            name="site_logo" 
+                            class="form-control"
+                            accept="image/*"
+                        >
+                        <small class="form-text">JPG, PNG, SVG. Max 2MB. Recommended: 250x80px</small>
+                    </div>
+                </div>
+
+                <!-- Favicon -->
+                <div class="card card-compact">
+                    <div class="card-header">
+                        <h3><i class="fas fa-star"></i> Favicon</h3>
+                    </div>
+                    <div class="card-body">
+                        <?php if (getSetting('site_favicon')): ?>
+                            <div class="favicon-preview">
+                                <img src="../uploads/<?php echo htmlspecialchars(getSetting('site_favicon')); ?>" alt="Favicon">
+                            </div>
+                        <?php else: ?>
+                            <div class="favicon-preview empty">
+                                <i class="fas fa-star"></i>
+                            </div>
+                        <?php endif; ?>
+                        <input 
+                            type="file" 
+                            id="site_favicon" 
+                            name="site_favicon" 
+                            class="form-control"
+                            accept=".ico,.png"
+                        >
+                        <small class="form-text">ICO or PNG. Max 500KB. 32x32px or 64x64px</small>
+                    </div>
+                </div>
+
+                <!-- Advanced Settings -->
+                <div class="card card-compact">
+                    <div class="card-header">
+                        <h3><i class="fas fa-tools"></i> Advanced</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label class="checkbox-label">
+                                <input 
+                                    type="checkbox" 
+                                    name="settings[maintenance_mode]" 
+                                    value="1"
+                                    <?php echo (getSetting('maintenance_mode') == '1') ? 'checked' : ''; ?>
+                                >
+                                <span>Maintenance Mode</span>
+                            </label>
+                            <small class="form-text">Enable to show maintenance page to visitors</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Actions -->
+                <div class="card card-compact">
+                    <div class="card-body">
+                        <button type="submit" class="btn-sm btn-primary btn-block">
+                            <i class="fas fa-save"></i> Save Settings
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<style>
+.content-header-compact {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.375rem;
+    border-bottom: 2px solid #FFC107;
+}
+
+.content-header-compact h1 {
+    font-size: 1.25rem;
+    margin: 0;
+    font-weight: 700;
+}
+
+.grid-layout {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 1rem;
+}
+
+.grid-main {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.grid-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.card {
+    background: #fff;
+    border: 2px solid #000;
+}
+
+.card-compact .card-header {
+    padding: 0.75rem 1rem;
+    background: #f8f9fa;
+    border-bottom: 2px solid #000;
+}
+
+.card-compact .card-header h3 {
+    margin: 0;
+    font-size: 0.875rem;
+    font-weight: 700;
+}
+
+.card-compact .card-body {
+    padding: 1rem;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group:last-child {
+    margin-bottom: 0;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.375rem;
+    font-size: 0.875rem;
+}
+
+.form-control {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+    border: 2px solid #dee2e6;
+    outline: none;
+    font-family: inherit;
+}
+
+.form-control:focus {
+    border-color: #FFC107;
+}
+
+textarea.form-control {
+    resize: vertical;
+}
+
+.form-text {
+    display: block;
+    margin-top: 0.25rem;
+    font-size: 0.75rem;
+    color: #6c757d;
+}
+
+.logo-preview {
+    width: 100%;
+    height: 100px;
+    border: 2px solid #dee2e6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.75rem;
+    background: #f8f9fa;
+    overflow: hidden;
+    padding: 1rem;
+}
+
+.logo-preview img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.logo-preview.empty {
+    flex-direction: column;
+    gap: 0.5rem;
+    color: #dee2e6;
+}
+
+.logo-preview.empty i {
+    font-size: 2rem;
+}
+
+.logo-preview.empty span {
+    font-size: 0.75rem;
+    color: #6c757d;
+}
+
+.favicon-preview {
+    width: 64px;
+    height: 64px;
+    border: 2px solid #dee2e6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.75rem;
+    background: #f8f9fa;
+    overflow: hidden;
+}
+
+.favicon-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.favicon-preview.empty {
+    color: #dee2e6;
+}
+
+.favicon-preview.empty i {
+    font-size: 1.5rem;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    font-weight: normal;
+}
+
+.checkbox-label input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+
+.btn-sm {
+    padding: 0.375rem 0.75rem;
+    font-size: 0.8125rem;
+    border: 2px solid;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background: #FFC107;
+    border-color: #000;
+    color: #000;
+}
+
+.btn-primary:hover {
+    background: #e0a800;
+}
+
+.btn-block {
+    width: 100%;
+    justify-content: center;
+}
+
+.required {
+    color: #dc3545;
+}
+
+.alert {
+    padding: 0.75rem 1rem;
+    margin-bottom: 1rem;
+    border: 2px solid;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.alert-success {
+    background: #d4edda;
+    border-color: #28a745;
+    color: #155724;
+}
+
+.alert-error {
+    background: #f8d7da;
+    border-color: #dc3545;
+    color: #721c24;
+}
+
+@media (max-width: 768px) {
+    .grid-layout {
+        grid-template-columns: 1fr;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+
+<script>
+function togglePasswordVisibility(fieldId) {
+    var field = document.getElementById(fieldId);
+    if (field.type === 'password') {
+        field.type = 'text';
+    } else {
+        field.type = 'password';
+    }
+}
+</script>
+
+<?php include 'includes/footer.php'; ?>
