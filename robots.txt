@@ -2,12 +2,16 @@ User-agent: *
 Allow: /
 Disallow: /admin/
 Disallow: /includes/
-Disallow: /uploads/
 Disallow: /config.php
 Disallow: /functions.php
-Disallow: /enroll.php
+Disallow: /enroll-production.php
 Disallow: /donate-process.php
 Disallow: /donate-verify.php
+Disallow: /donate-confirm.php
+Disallow: /donate-payment.php
 Disallow: /donation-ipn.php
+Disallow: /setup.php
+Disallow: /test-*.php
+Disallow: /logs/
 
 Sitemap: https://dtehmhealth.com/sitemap.php

@@ -109,9 +109,10 @@ Options -Indexes
 # =====================================
 # ERROR PAGES
 # =====================================
-ErrorDocument 404 /404.php
-ErrorDocument 403 /404.php
-ErrorDocument 500 /404.php
+# Local (MAMP): /dtem-web/404.php | Production: /404.php
+ErrorDocument 404 /dtem-web/404.php
+ErrorDocument 403 /dtem-web/404.php
+ErrorDocument 500 /dtem-web/404.php
 
 <IfModule mod_rewrite.c>
     RewriteRule ^sitemap\.xml$ sitemap.php [L]

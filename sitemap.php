@@ -29,6 +29,9 @@ echo '<?xml version="1.0" encoding="UTF-8"?>';
     <url><loc><?php echo $baseUrl; ?>/programs.php</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
     <url><loc><?php echo $baseUrl; ?>/resources.php</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
     <url><loc><?php echo $baseUrl; ?>/stories.php</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+    <url><loc><?php echo $baseUrl; ?>/get-involved.php</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+    <url><loc><?php echo $baseUrl; ?>/testimonials.php</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+    <url><loc><?php echo $baseUrl; ?>/enroll.php</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
 
     <!-- Dynamic: News Posts -->
 <?php
@@ -52,5 +55,13 @@ $stmt = $pdo->query("SELECT id, updated_at FROM causes WHERE status = 'active' O
 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)):
 ?>
     <url><loc><?php echo $baseUrl; ?>/cause-detail.php?id=<?php echo $row['id']; ?></loc><lastmod><?php echo date('Y-m-d', strtotime($row['updated_at'])); ?></lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url>
+<?php endwhile; ?>
+
+    <!-- Dynamic: Products -->
+<?php
+$stmt = $pdo->query("SELECT id, updated_at FROM products WHERE status = 'Active' ORDER BY id DESC");
+while ($row = $stmt->fetch(PDO::FETCH_ASSOC)):
+?>
+    <url><loc><?php echo $baseUrl; ?>/product-detail.php?id=<?php echo $row['id']; ?></loc><lastmod><?php echo date('Y-m-d', strtotime($row['updated_at'])); ?></lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
 <?php endwhile; ?>
 </urlset>
