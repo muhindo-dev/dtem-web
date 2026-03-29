@@ -39,19 +39,22 @@ $teamMembers = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <!-- Hero Section -->
     <section id="hero">
+        <div class="hero-orb hero-orb-1"></div>
+        <div class="hero-orb hero-orb-2"></div>
+        <div class="hero-orb hero-orb-3"></div>
         <div class="container">
             <div class="hero-content-wrapper">
-                <div class="hero-badge">
+                <div class="hero-badge" data-aos="fade-down" data-aos-delay="100">
                     <span class="badge-dtehm"><?php echo htmlspecialchars($siteShortName); ?> HEALTH MINISTRIES</span>
                 </div>
-                <h1 class="hero-title">
+                <h1 class="hero-title" data-aos="fade-up" data-aos-delay="200">
                     Curing Lives with<br><span class="highlight">Ayurveda</span>
                 </h1>
-                <p class="hero-lead">
+                <p class="hero-lead" data-aos="fade-up" data-aos-delay="300">
                     Transforming the health landscape through complementary, alternative, and herbal medicine. 
                     Holistic healthcare solutions for a healthier Uganda.
                 </p>
-                <div class="hero-buttons">
+                <div class="hero-buttons" data-aos="fade-up" data-aos-delay="400">
                     <a href="https://play.google.com/store/apps/details?id=com.dtehm.insurance" target="_blank" rel="noopener noreferrer" class="btn-hero btn-hero-primary">
                         <i class="fab fa-google-play me-2"></i><span>Download App</span>
                     </a>
@@ -59,25 +62,25 @@ $teamMembers = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <i class="fas fa-info-circle me-2"></i><span>Learn More</span>
                     </a>
                 </div>
-                <div class="hero-stats-grid">
+                <div class="hero-stats-grid" data-aos="fade-up" data-aos-delay="500">
                     <div class="hero-stat-item">
                         <i class="fas fa-users stat-icon"></i>
-                        <span class="stat-number"><?php echo number_format($totalMembers); ?>+</span>
+                        <span class="stat-number" data-count="<?php echo $totalMembers; ?>"><?php echo number_format($totalMembers); ?>+</span>
                         <span class="stat-label">Members</span>
                     </div>
                     <div class="hero-stat-item">
                         <i class="fas fa-leaf stat-icon"></i>
-                        <span class="stat-number"><?php echo $totalProducts; ?>+</span>
+                        <span class="stat-number" data-count="<?php echo $totalProducts; ?>"><?php echo $totalProducts; ?>+</span>
                         <span class="stat-label">Products</span>
                     </div>
                     <div class="hero-stat-item">
                         <i class="fas fa-handshake stat-icon"></i>
-                        <span class="stat-number"><?php echo number_format($totalMemberships); ?>+</span>
+                        <span class="stat-number" data-count="<?php echo $totalMemberships; ?>"><?php echo number_format($totalMemberships); ?>+</span>
                         <span class="stat-label">Memberships</span>
                     </div>
                     <div class="hero-stat-item">
                         <i class="fas fa-map-marker-alt stat-icon"></i>
-                        <span class="stat-number">4</span>
+                        <span class="stat-number" data-count="4">4</span>
                         <span class="stat-label">Branches</span>
                     </div>
                 </div>
@@ -88,41 +91,41 @@ $teamMembers = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <!-- Services Overview -->
     <section class="section-pad" style="background: var(--gray-light);">
         <div class="container">
-            <div class="section-title">
+            <div class="section-title" data-aos="fade-up">
                 <span class="badge-section">OUR SERVICES</span>
                 <h2>What We Offer</h2>
                 <p class="subtitle">Comprehensive healthcare solutions combining traditional wisdom with modern approaches</p>
             </div>
             <div class="row g-4">
-                <div class="col-lg-3 col-md-6">
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
                     <div class="service-card text-center">
                         <div class="service-icon mx-auto"><i class="fas fa-leaf"></i></div>
                         <h3>Health Products</h3>
-                        <p>Natural Ayurvedic and herbal medicine products for holistic wellness and personal care.</p>
+                        <p>30+ natural health products from UGX 35,000. Herbal medicines, supplements, and personal care items.</p>
                         <a href="shop.php" class="btn-outline-custom mt-2" style="font-size: 0.85rem; padding: 0.5rem 1.2rem;">View Products</a>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6">
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
                     <div class="service-card text-center">
                         <div class="service-icon mx-auto"><i class="fas fa-shield-alt"></i></div>
                         <h3>Health Insurance</h3>
-                        <p>Comprehensive health insurance coverage for families with affordable monthly premiums.</p>
+                        <p>Up to UGX 50M coverage for just UGX 16,000/month. Comprehensive health insurance for you and your family.</p>
                         <a href="insurance.php" class="btn-outline-custom mt-2" style="font-size: 0.85rem; padding: 0.5rem 1.2rem;">Learn More</a>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6">
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
                     <div class="service-card text-center">
                         <div class="service-icon mx-auto"><i class="fas fa-chart-line"></i></div>
                         <h3>Investment</h3>
-                        <p>Community investment projects including agriculture and property with shared returns.</p>
+                        <p>Buy shares in healthcare and agriculture projects from UGX 100,000 per share and earn returns.</p>
                         <a href="investment.php" class="btn-outline-custom mt-2" style="font-size: 0.85rem; padding: 0.5rem 1.2rem;">Invest Now</a>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6">
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="400">
                     <div class="service-card text-center">
                         <div class="service-icon mx-auto"><i class="fas fa-project-diagram"></i></div>
-                        <h3>Network & Leadership</h3>
-                        <p>Join our network marketing community and earn commissions through referrals.</p>
+                        <h3>Network & Earnings</h3>
+                        <p>Earn up to 27.5% commission on product sales across a 10-generation network. 8 leadership ranks with rewards.</p>
                         <a href="network.php" class="btn-outline-custom mt-2" style="font-size: 0.85rem; padding: 0.5rem 1.2rem;">Join Network</a>
                     </div>
                 </div>
@@ -133,20 +136,20 @@ $teamMembers = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <!-- Mission & Vision -->
     <section id="mission" class="section-pad" style="background: var(--white);">
         <div class="container">
-            <div class="section-title">
+            <div class="section-title" data-aos="fade-up">
                 <span class="badge-section">WHO WE ARE</span>
                 <h2>Our Mission & Vision</h2>
                 <p class="subtitle">Guided by a commitment to holistic healthcare and community empowerment</p>
             </div>
             <div class="row g-4">
-                <div class="col-lg-6">
+                <div class="col-lg-6" data-aos="fade-right" data-aos-delay="100">
                     <div class="mission-card">
                         <div class="mission-icon"><i class="fas fa-bullseye"></i></div>
                         <h3>Our Mission</h3>
                         <p><?php echo htmlspecialchars($missionStatement); ?></p>
                     </div>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-6" data-aos="fade-left" data-aos-delay="200">
                     <div class="mission-card">
                         <div class="mission-icon"><i class="fas fa-eye"></i></div>
                         <h3>Our Vision</h3>
@@ -160,12 +163,12 @@ $teamMembers = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <!-- Featured Products -->
     <section class="section-pad" style="background: var(--gray-light);">
         <div class="container">
-            <div class="section-title">
+            <div class="section-title" data-aos="fade-up">
                 <span class="badge-section">HEALTH PRODUCTS</span>
                 <h2>Our Natural Products</h2>
-                <p class="subtitle">Ayurvedic, herbal, and personal care products for your well-being</p>
+                <p class="subtitle">Natural herbal medicines, supplements, and personal care products from UGX 35,000</p>
             </div>
-            <div class="row g-4">
+            <div class="row g-3 g-md-4">
                 <?php foreach ($products as $product): ?>
                 <div class="col-6 col-md-4 col-lg-3">
                     <a href="product-detail.php?id=<?php echo $product['id']; ?>" style="text-decoration: none; color: inherit; display: block;">
@@ -209,38 +212,119 @@ $teamMembers = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <!-- Impact Stats -->
     <section id="impact">
         <div class="container">
-            <div class="section-title">
+            <div class="section-title" data-aos="fade-up">
                 <span class="badge-section">OUR IMPACT</span>
                 <h2>Making a Difference</h2>
                 <p class="subtitle">Growing community impact through holistic healthcare and empowerment</p>
             </div>
             <div class="row g-4">
-                <div class="col-lg-3 col-md-6">
+                <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="100">
                     <div class="impact-card">
                         <div class="impact-icon"><i class="fas fa-users"></i></div>
-                        <div class="impact-number"><?php echo number_format($totalMembers); ?>+</div>
+                        <div class="impact-number" data-count="<?php echo $totalMembers; ?>"><?php echo number_format($totalMembers); ?>+</div>
                         <div class="impact-label">Registered Members</div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6">
+                <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="200">
                     <div class="impact-card">
                         <div class="impact-icon"><i class="fas fa-leaf"></i></div>
-                        <div class="impact-number"><?php echo $totalProducts; ?>+</div>
+                        <div class="impact-number" data-count="<?php echo $totalProducts; ?>"><?php echo $totalProducts; ?>+</div>
                         <div class="impact-label">Health Products</div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6">
+                <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="300">
                     <div class="impact-card">
                         <div class="impact-icon"><i class="fas fa-map-pin"></i></div>
-                        <div class="impact-number">4</div>
+                        <div class="impact-number" data-count="4">4</div>
                         <div class="impact-label">Branch Offices</div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6">
+                <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="400">
                     <div class="impact-card">
                         <div class="impact-icon"><i class="fas fa-calendar-check"></i></div>
-                        <div class="impact-number"><?php echo date('Y') - 2021; ?>+</div>
+                        <div class="impact-number" data-count="<?php echo date('Y') - 2021; ?>"><?php echo date('Y') - 2021; ?>+</div>
                         <div class="impact-label">Years of Service</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Networking & Earnings -->
+    <section class="network-section section-pad">
+        <div class="container">
+            <div class="network-content-wrap">
+                <div class="row align-items-center g-5">
+                    <div class="col-lg-5" data-aos="fade-right">
+                        <div class="network-heading-badge"><i class="fas fa-project-diagram"></i> EARN WITH DTEHM</div>
+                        <h2 class="network-main-title">Build Your Network, <span>Grow Your Income</span></h2>
+                        <p class="network-subtitle">Join our 10-generation referral network and earn commissions on every product sale. From Sponsor bonuses to leadership rewards — multiple income streams await you.</p>
+                        <div class="network-highlight-grid">
+                            <div class="network-highlight-card">
+                                <div class="network-highlight-number green">27.5%</div>
+                                <div class="network-highlight-label">Total Commission</div>
+                            </div>
+                            <div class="network-highlight-card">
+                                <div class="network-highlight-number">10</div>
+                                <div class="network-highlight-label">Generations</div>
+                            </div>
+                            <div class="network-highlight-card">
+                                <div class="network-highlight-number green">8</div>
+                                <div class="network-highlight-label">Leadership Ranks</div>
+                            </div>
+                        </div>
+                        <div class="network-cta-section">
+                            <p class="network-cta-text mb-0"><strong>Start earning</strong> with a membership from UGX 76,000</p>
+                            <a href="network.php" class="btn-primary-custom" style="white-space: nowrap;">Learn More <i class="fas fa-arrow-right ms-1"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-7" data-aos="fade-left" data-aos-delay="200">
+                        <div class="network-earnings-visual">
+                            <div class="earnings-flow">
+                                <div class="earnings-flow-item">
+                                    <div class="earnings-flow-icon blue"><i class="fas fa-user-plus"></i></div>
+                                    <div class="earnings-flow-label">Sponsor</div>
+                                    <div class="earnings-flow-value">8%</div>
+                                </div>
+                                <div class="earnings-flow-arrow"><i class="fas fa-chevron-right"></i></div>
+                                <div class="earnings-flow-item">
+                                    <div class="earnings-flow-icon green"><i class="fas fa-store"></i></div>
+                                    <div class="earnings-flow-label">Stockist</div>
+                                    <div class="earnings-flow-value">7%</div>
+                                </div>
+                                <div class="earnings-flow-arrow"><i class="fas fa-chevron-right"></i></div>
+                                <div class="earnings-flow-item">
+                                    <div class="earnings-flow-icon blue"><i class="fas fa-sitemap"></i></div>
+                                    <div class="earnings-flow-label">GN 1-10</div>
+                                    <div class="earnings-flow-value">7.5%</div>
+                                </div>
+                                <div class="earnings-flow-arrow"><i class="fas fa-chevron-right"></i></div>
+                                <div class="earnings-flow-item">
+                                    <div class="earnings-flow-icon gold"><i class="fas fa-gift"></i></div>
+                                    <div class="earnings-flow-label">Referral</div>
+                                    <div class="earnings-flow-value">5%</div>
+                                </div>
+                            </div>
+                            <div style="background: linear-gradient(135deg, var(--light-blue), #f0faf3); border-radius: 12px; padding: 1.25rem 1.5rem; display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                                <div style="width: 44px; height: 44px; background: var(--primary-blue); border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                                    <i class="fas fa-trophy" style="color: var(--white); font-size: 1.1rem;"></i>
+                                </div>
+                                <div>
+                                    <div style="font-weight: 800; color: var(--dark-blue); font-size: 1rem;">Leadership Ranks</div>
+                                    <div style="color: var(--gray-text); font-size: 0.85rem;">Member &rarr; DTEHM Executive Director &mdash; unlock salary bonuses, car funds & travel rewards</div>
+                                </div>
+                            </div>
+                            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.75rem;">
+                                <div style="background: var(--gray-light); border-radius: 10px; padding: 1rem; text-align: center;">
+                                    <div style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; color: var(--gray-text); font-weight: 600; margin-bottom: 0.25rem;">Min Withdrawal</div>
+                                    <div style="font-weight: 800; color: var(--primary-blue); font-size: 1.1rem;">UGX 10,000</div>
+                                </div>
+                                <div style="background: var(--gray-light); border-radius: 10px; padding: 1rem; text-align: center;">
+                                    <div style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; color: var(--gray-text); font-weight: 600; margin-bottom: 0.25rem;">Insurance Included</div>
+                                    <div style="font-weight: 800; color: var(--primary-green); font-size: 1.1rem;">UGX 50M Cover</div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -250,7 +334,7 @@ $teamMembers = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <!-- Team Section -->
     <section class="section-pad" style="background: var(--white);">
         <div class="container">
-            <div class="section-title">
+            <div class="section-title" data-aos="fade-up">
                 <span class="badge-section">OUR LEADERSHIP</span>
                 <h2>Meet Our Team</h2>
                 <p class="subtitle">Dedicated professionals committed to transforming healthcare</p>
@@ -285,7 +369,7 @@ $teamMembers = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <!-- Testimonials -->
     <section class="section-pad" style="background: var(--gray-light);">
         <div class="container">
-            <div class="section-title">
+            <div class="section-title" data-aos="fade-up">
                 <span class="badge-section">TESTIMONIALS</span>
                 <h2>What Our Customers Say</h2>
                 <p class="subtitle">Watch real video stories from people who trust DTEHM for their health and wellness</p>
@@ -424,7 +508,10 @@ $teamMembers = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <section id="cta" class="section-pad">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-lg-8 text-center">
+                <div class="col-lg-8 text-center" data-aos="zoom-in">
+                    <div style="display: inline-flex; align-items: center; justify-content: center; width: 70px; height: 70px; background: rgba(4,160,40,0.15); border-radius: 20px; margin-bottom: 1.5rem;">
+                        <i class="fas fa-heartbeat" style="font-size: 1.8rem; color: var(--primary-green);"></i>
+                    </div>
                     <h2 class="section-heading" style="font-size: 2.5rem; color: var(--white);">Join DTEHM Today</h2>
                     <p style="font-size: 1.15rem; color: rgba(255,255,255,0.9); line-height: 1.7; margin-bottom: 2.5rem;">
                         Become a member of DTEHM Health Ministries. Access natural health products, 
@@ -434,7 +521,7 @@ $teamMembers = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <a href="https://play.google.com/store/apps/details?id=com.dtehm.insurance" target="_blank" rel="noopener noreferrer" class="btn-green-custom" style="padding: 0.9rem 2.5rem; font-size: 1rem;">
                             <i class="fab fa-google-play me-2"></i>Get the App
                         </a>
-                        <a href="contact.php" style="display: inline-block; background: transparent; color: var(--white); border: 2px solid var(--white); padding: 0.9rem 2.5rem; font-weight: 600; border-radius: 6px; text-decoration: none; transition: all 0.3s; font-size: 1rem;" onmouseover="this.style.background='var(--white)'; this.style.color='var(--primary-blue)'" onmouseout="this.style.background='transparent'; this.style.color='var(--white)'">
+                        <a href="contact.php" style="display: inline-block; background: transparent; color: var(--white); border: 2px solid rgba(255,255,255,0.4); padding: 0.9rem 2.5rem; font-weight: 600; border-radius: 8px; text-decoration: none; transition: all 0.4s; font-size: 1rem;" onmouseover="this.style.background='var(--white)'; this.style.color='var(--primary-blue)'; this.style.borderColor='var(--white)'" onmouseout="this.style.background='transparent'; this.style.color='var(--white)'; this.style.borderColor='rgba(255,255,255,0.4)'">
                             <i class="fas fa-envelope me-2"></i>Contact Us
                         </a>
                     </div>

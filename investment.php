@@ -8,7 +8,7 @@ $pageDescription = 'Invest in DTEHM Health Ministries projects - buy shares and 
 include 'includes/header.php';
 
 // Get projects
-$projects = $pdo->query("SELECT * FROM projects WHERE status = 'active' ORDER BY title")->fetchAll(PDO::FETCH_ASSOC);
+$projects = $pdo->query("SELECT * FROM projects WHERE status IN ('ongoing','completed') ORDER BY title")->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
     <!-- Page Header -->
@@ -46,7 +46,7 @@ $projects = $pdo->query("SELECT * FROM projects WHERE status = 'active' ORDER BY
                             </div>
                             <div>
                                 <strong style="color: var(--dark-blue);">Affordable Entry</strong>
-                                <p style="font-size: 0.9rem; color: var(--gray-text); margin: 0;">Start investing with accessible share prices</p>
+                                <p style="font-size: 0.9rem; color: var(--gray-text); margin: 0;">Start investing with shares from UGX 100,000</p>
                             </div>
                         </div>
                         <div style="display: flex; align-items: start; gap: 1rem;">

@@ -27,7 +27,7 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <div class="page-header">
         <div class="container">
             <h1>Health Products</h1>
-            <p>Natural Ayurvedic, herbal, and personal care products for holistic wellness</p>
+            <p>Natural herbal medicines, supplements, and personal care products &mdash; from UGX 35,000</p>
         </div>
     </div>
 
@@ -95,7 +95,7 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <section id="cta" class="section-pad-sm">
         <div class="container text-center">
             <h2 class="section-heading" style="color: var(--white);">Want to Order Products?</h2>
-            <p style="color: rgba(255,255,255,0.9); margin-bottom: 2rem;">Download our mobile app or contact us directly to place your order.</p>
+            <p style="color: rgba(255,255,255,0.9); margin-bottom: 2rem;">Download the DTEHM app to order products, earn 8% sponsor commission on sales, and build your network.</p>
             <div class="cta-inline-btns" style="justify-content: center;">
                 <a href="https://play.google.com/store/apps/details?id=com.dtehm.insurance" target="_blank" rel="noopener noreferrer" class="btn-green-custom" style="padding: 0.8rem 2rem;"><i class="fab fa-google-play me-2"></i>Get the App</a>
                 <a href="contact.php" style="display: inline-block; background: transparent; color: var(--white); border: 2px solid var(--white); padding: 0.8rem 2rem; font-weight: 600; border-radius: 6px; text-decoration: none;"><i class="fas fa-phone me-2"></i>Contact Us</a>

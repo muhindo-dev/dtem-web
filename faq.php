@@ -43,7 +43,7 @@ include 'includes/header.php';
             "name": "How do I become a DTEHM member?",
             "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "You can register through our enrollment page on the website or download the DTEHM mobile app. You will need a sponsor code from an existing member to join."
+                "text": "Download the DTEHM mobile app from Google Play Store and register with a sponsor code from an existing member. Membership fees: DTEHM (UGX 76,000 one-time), DIP (UGX 20,000 one-time), or both (UGX 96,000)."
             }
         },
         {
@@ -51,7 +51,7 @@ include 'includes/header.php';
             "name": "What benefits do members get?",
             "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "Members get access to discounted health products, can enroll in insurance programs, invest in projects, and earn commissions through the network marketing system. Active members can also become product stockists and earn additional income."
+                "text": "Members earn commissions from personal sales (8%), a 10-generation network (3% to 0.2%), and stockist distribution (7%). They can also enroll in health insurance (up to UGX 50M coverage for UGX 16,000/month), invest in projects, and qualify for 8 leadership ranks with rewards."
             }
         },
         {
@@ -75,7 +75,7 @@ include 'includes/header.php';
             "name": "What insurance programs are available?",
             "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "We currently offer the Comprehensive Health Insurance program with coverage up to UGX 50,000,000 at an affordable monthly premium."
+                "text": "We offer the Comprehensive Health Insurance program with coverage up to UGX 50,000,000 at a monthly premium of UGX 16,000. The plan covers 12 months with a 7-day grace period on each payment."
             }
         },
         {
@@ -83,7 +83,7 @@ include 'includes/header.php';
             "name": "How does DTEHM investment work?",
             "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "DTEHM offers share-based investment in healthcare projects. You can purchase shares at the listed price. As projects generate revenue, shareholders earn returns."
+                "text": "DTEHM offers share-based investment in healthcare, agriculture, and transport projects. Purchase shares from UGX 100,000 each. Your ownership percentage equals your shares divided by total project shares. Shareholders earn returns proportional to project profits."
             }
         },
         {
@@ -91,7 +91,7 @@ include 'includes/header.php';
             "name": "How do commissions work?",
             "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "There are multiple ways to earn: Sponsor commission (8%) earned when someone you referred makes a purchase. Stockist commission (7%) earned as a product distributor. Network commissions earned from purchases across your 10-level network."
+                "text": "4 ways to earn: Sponsor commission (8%) on sales by your referred buyers. Stockist commission (7%) as a product distributor. Network commissions (3% to 0.2%) across 10 generations of your downline. Referral bonus (5%) on purchases by referred members. Total commission pool per sale: up to 27.5%."
             }
         }
     ]
@@ -160,7 +160,7 @@ include 'includes/header.php';
                             </div>
                             <div id="faq4" class="collapse" data-bs-parent="#faqMembership">
                                 <div class="faq-answer">
-                                    You can register by downloading the <a href="https://play.google.com/store/apps/details?id=com.dtehm.insurance" target="_blank" rel="noopener noreferrer">DTEHM mobile app</a> from the Google Play Store. You will need a sponsor code from an existing member to join. You will need a sponsor code from an existing member to join.
+                                    You can register by downloading the <a href="https://play.google.com/store/apps/details?id=com.dtehm.insurance" target="_blank" rel="noopener noreferrer">DTEHM mobile app</a> from the Google Play Store. You will need a sponsor code from an existing member to join.
                                 </div>
                             </div>
                         </div>
@@ -171,7 +171,7 @@ include 'includes/header.php';
                             </div>
                             <div id="faq5" class="collapse" data-bs-parent="#faqMembership">
                                 <div class="faq-answer">
-                                    Membership packages vary. Contact your sponsor or our office for current pricing. You can activate your account through the DTEHM mobile app using mobile money payment.
+                                    There are three membership options: <strong>DTEHM Membership (UGX 76,000)</strong> &mdash; one-time lifetime fee that lets you sell products (8% commission), sponsor members, earn network commissions across 10 generations, and qualify for leadership ranks. <strong>DIP Membership (UGX 20,000)</strong> &mdash; one-time fee for access to insurance programs and medical services. <strong>Both (UGX 96,000)</strong> &mdash; full access to all DTEHM services. All payments are made via mobile money through the app.
                                 </div>
                             </div>
                         </div>
@@ -182,7 +182,7 @@ include 'includes/header.php';
                             </div>
                             <div id="faq6" class="collapse" data-bs-parent="#faqMembership">
                                 <div class="faq-answer">
-                                    Members get access to discounted health products, can enroll in insurance programs, invest in projects, and earn commissions through the network marketing system. Active members can also become product stockists and earn additional income.
+                                    Members get access to health products at member prices, can earn commissions from personal sales (8%), earn from a 10-generation network (3% to 0.2%), become a stockist for additional 7% commission, enroll in insurance programs (up to UGX 50M coverage), invest in projects by purchasing shares, qualify for 8 leadership ranks with rewards (from smartphone to profit share), and request medical services. Active DTEHM members can also earn a 5% referral bonus.
                                 </div>
                             </div>
                         </div>
@@ -236,7 +236,7 @@ include 'includes/header.php';
                             </div>
                             <div id="faq10" class="collapse" data-bs-parent="#faqInsurance">
                                 <div class="faq-answer">
-                                    We currently offer the Comprehensive Health Insurance program with coverage up to UGX 50,000,000 at an affordable monthly premium. Visit our <a href="insurance.php">insurance page</a> for full details.
+                                    We currently offer the <strong>Comprehensive Health Insurance</strong> program with coverage up to <strong>UGX 50,000,000</strong> at a monthly premium of <strong>UGX 16,000</strong>. The plan covers 12 months with a 7-day grace period on each payment. Late payment penalty is UGX 2,000. Visit our <a href="insurance.php">insurance page</a> for full details.
                                 </div>
                             </div>
                         </div>
@@ -247,7 +247,7 @@ include 'includes/header.php';
                             </div>
                             <div id="faq11" class="collapse" data-bs-parent="#faqInsurance">
                                 <div class="faq-answer">
-                                    First, become a DTEHM member. Then you can enroll in insurance programs through the DTEHM mobile app or by visiting our office. You will need to make regular premium payments to maintain coverage.
+                                    First, become a DIP member (UGX 20,000 one-time fee). Then you can enroll in insurance programs through the DTEHM mobile app. You will need to make monthly premium payments of UGX 16,000 via mobile money to maintain your coverage.
                                 </div>
                             </div>
                         </div>
@@ -263,7 +263,7 @@ include 'includes/header.php';
                             </div>
                             <div id="faq12" class="collapse" data-bs-parent="#faqInvestment">
                                 <div class="faq-answer">
-                                    DTEHM offers share-based investment in healthcare projects. You can purchase shares at the listed price. As projects generate revenue, shareholders earn returns. Visit our <a href="investment.php">investment page</a> to see available projects.
+                                    DTEHM offers share-based investment in healthcare, agriculture, and transport projects. You purchase shares at the project&rsquo;s listed price (from UGX 100,000 per share). Your ownership percentage equals your shares divided by total project shares. As projects generate profit, shareholders earn returns proportional to their ownership. Visit our <a href="investment.php">investment page</a> to see available projects.
                                 </div>
                             </div>
                         </div>
@@ -274,7 +274,7 @@ include 'includes/header.php';
                             </div>
                             <div id="faq13" class="collapse" data-bs-parent="#faqInvestment">
                                 <div class="faq-answer">
-                                    The minimum investment is one share. Share prices vary per project. Check the <a href="investment.php">investment page</a> for current share prices and availability.
+                                    The minimum investment is one share. Current projects have share prices starting at UGX 100,000. Available projects include medicine distribution, agriculture, property, and motorcycle fleet ventures. Check the <a href="investment.php">investment page</a> for current share prices and availability.
                                 </div>
                             </div>
                         </div>
@@ -290,7 +290,7 @@ include 'includes/header.php';
                             </div>
                             <div id="faq14" class="collapse" data-bs-parent="#faqNetwork">
                                 <div class="faq-answer">
-                                    There are multiple ways to earn: <strong>Sponsor commission (8%)</strong> — earned when someone you referred makes a purchase. <strong>Stockist commission (7%)</strong> — earned as a product distributor. <strong>Network commissions</strong> — earned from purchases across your 10-level network.
+                                    There are 4 ways to earn: <strong>Sponsor commission (8%)</strong> &mdash; earned when someone you referred as a buyer makes a purchase. <strong>Stockist commission (7%)</strong> &mdash; earned as a product distributor. <strong>Network commissions (3%&ndash;0.2%)</strong> &mdash; earned from purchases across your 10-generation downline. <strong>Referral bonus (5%)</strong> &mdash; earned when referred members make purchases. The total commission pool per sale is up to 27.5%. Visit our <a href="network.php">network page</a> for the full breakdown.
                                 </div>
                             </div>
                         </div>
@@ -312,7 +312,7 @@ include 'includes/header.php';
                             </div>
                             <div id="faq16" class="collapse" data-bs-parent="#faqNetwork">
                                 <div class="faq-answer">
-                                    Earnings can be withdrawn through the DTEHM mobile app via mobile money. You can also use your balance to purchase products or pay for insurance premiums.
+                                    Earnings can be withdrawn through the DTEHM mobile app via Mobile Money (MTN or Airtel) or bank transfer. The minimum withdrawal amount is <strong>UGX 10,000</strong>. Withdrawals are processed within 24&ndash;48 hours. You can also use your wallet balance to purchase products or pay insurance premiums directly.
                                 </div>
                             </div>
                         </div>

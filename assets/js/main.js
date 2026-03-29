@@ -7,12 +7,10 @@ function setHeroHeight() {
         const remainingHeight = window.innerHeight;
         
         if (window.innerWidth > 768) {
-            // Set hero height to full viewport on desktop
             hero.style.minHeight = `${remainingHeight}px`;
             hero.style.height = `${remainingHeight}px`;
             hero.style.paddingTop = `${navbarHeight}px`;
         } else {
-            // Let CSS handle mobile sizing
             hero.style.minHeight = '';
             hero.style.height = '';
             hero.style.paddingTop = `${navbarHeight}px`;
@@ -21,7 +19,55 @@ function setHeroHeight() {
 }
 
 // Run on page load
-document.addEventListener('DOMContentLoaded', setHeroHeight);
+document.addEventListener('DOMContentLoaded', function() {
+    setHeroHeight();
+    
+    // Initialize AOS (Animate On Scroll)
+    if (typeof AOS !== 'undefined') {
+        AOS.init({
+            duration: 700,
+            easing: 'ease-out-cubic',
+            once: true,
+            offset: 60,
+            disable: 'mobile'
+        });
+    }
+    
+    // Animated number counter
+    function animateCounters() {
+        const counters = document.querySelectorAll('[data-count]');
+        counters.forEach(counter => {
+            if (counter.dataset.counted) return;
+            
+            const rect = counter.getBoundingClientRect();
+            if (rect.top < window.innerHeight && rect.bottom > 0) {
+                counter.dataset.counted = 'true';
+                const target = parseInt(counter.dataset.count);
+                const suffix = counter.textContent.includes('+') ? '+' : '';
+                const duration = 2000;
+                const start = 0;
+                const startTime = performance.now();
+                
+                function updateCounter(currentTime) {
+                    const elapsed = currentTime - startTime;
+                    const progress = Math.min(elapsed / duration, 1);
+                    // Ease out cubic
+                    const easeOut = 1 - Math.pow(1 - progress, 3);
+                    const current = Math.round(start + (target - start) * easeOut);
+                    counter.textContent = current.toLocaleString() + suffix;
+                    
+                    if (progress < 1) {
+                        requestAnimationFrame(updateCounter);
+                    }
+                }
+                requestAnimationFrame(updateCounter);
+            }
+        });
+    }
+    
+    window.addEventListener('scroll', animateCounters, { passive: true });
+    animateCounters(); // Initial check
+});
 
 // Run on window resize
 window.addEventListener('resize', setHeroHeight);

@@ -8,7 +8,7 @@ $pageDescription = 'DTEHM Health Insurance programs - affordable comprehensive h
 include 'includes/header.php';
 
 // Get insurance programs
-$programs = $pdo->query("SELECT * FROM insurance_programs WHERE status = 'active' ORDER BY name")->fetchAll(PDO::FETCH_ASSOC);
+$programs = $pdo->query("SELECT * FROM insurance_programs WHERE status = 'Active' ORDER BY name")->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
     <!-- Page Header -->
@@ -26,9 +26,10 @@ $programs = $pdo->query("SELECT * FROM insurance_programs WHERE status = 'active
                 <div class="col-lg-6">
                     <h2 class="section-heading">Why DTEHM Insurance?</h2>
                     <p style="color: var(--gray-text); line-height: 1.8;">
-                        DTEHM Health Ministries offers health insurance programs designed to provide comprehensive medical coverage 
-                        at affordable premiums. Our insurance partners ensure you and your family get the care you need 
-                        without financial burden.
+                        DTEHM Health Ministries offers the <strong>Comprehensive Health Insurance</strong> program providing 
+                        up to <strong>UGX 50,000,000</strong> in medical coverage for just <strong>UGX 16,000 per month</strong>. 
+                        As a DIP member (UGX 20,000 one-time fee), you can enroll and access healthcare services 
+                        at partner hospitals across Uganda.
                     </p>
                     <div class="row mt-4">
                         <div class="col-6 mb-3">
@@ -154,29 +155,29 @@ $programs = $pdo->query("SELECT * FROM insurance_programs WHERE status = 'active
                 <div class="col-md-3">
                     <div class="text-center">
                         <div class="step-circle" style="background: var(--light-blue); color: var(--primary-blue);">1</div>
-                        <h5 style="color: var(--dark-blue); font-weight: 700;">Register</h5>
-                        <p style="color: var(--gray-text); font-size: 0.9rem;">Join DTEHM as a member through the app or website</p>
+                        <h5 style="color: var(--dark-blue); font-weight: 700;">Become a DIP Member</h5>
+                        <p style="color: var(--gray-text); font-size: 0.9rem;">Download the DTEHM app and register for DIP membership (UGX 20,000 one-time)</p>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="text-center">
                         <div class="step-circle" style="background: var(--light-blue); color: var(--primary-blue);">2</div>
                         <h5 style="color: var(--dark-blue); font-weight: 700;">Choose a Plan</h5>
-                        <p style="color: var(--gray-text); font-size: 0.9rem;">Select the insurance program that fits your needs</p>
+                        <p style="color: var(--gray-text); font-size: 0.9rem;">Select the Comprehensive Health Insurance plan with UGX 50M coverage</p>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="text-center">
                         <div class="step-circle" style="background: var(--light-blue); color: var(--primary-blue);">3</div>
-                        <h5 style="color: var(--dark-blue); font-weight: 700;">Pay Premium</h5>
-                        <p style="color: var(--gray-text); font-size: 0.9rem;">Make affordable monthly premium payments via mobile money</p>
+                        <h5 style="color: var(--dark-blue); font-weight: 700;">Pay Monthly Premium</h5>
+                        <p style="color: var(--gray-text); font-size: 0.9rem;">Pay UGX 16,000/month via mobile money. 7-day grace period on each payment</p>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="text-center">
                         <div class="step-circle" style="background: var(--light-blue); color: var(--primary-blue);">4</div>
                         <h5 style="color: var(--dark-blue); font-weight: 700;">Get Covered</h5>
-                        <p style="color: var(--gray-text); font-size: 0.9rem;">Access healthcare services at partner hospitals</p>
+                        <p style="color: var(--gray-text); font-size: 0.9rem;">Access healthcare services at partner hospitals for 12 months of coverage</p>
                     </div>
                 </div>
             </div>
@@ -187,7 +188,7 @@ $programs = $pdo->query("SELECT * FROM insurance_programs WHERE status = 'active
     <section id="cta" class="section-pad-sm">
         <div class="container text-center">
             <h2 class="section-heading" style="color: var(--white);">Ready to Get Covered?</h2>
-            <p style="color: rgba(255,255,255,0.9); margin-bottom: 2rem;">Join thousands of members enjoying affordable healthcare coverage.</p>
+            <p style="color: rgba(255,255,255,0.9); margin-bottom: 2rem;">Get covered from as low as UGX 16,000/month with up to UGX 50,000,000 in coverage.</p>
             <div class="cta-inline-btns" style="justify-content: center;">
                 <a href="https://play.google.com/store/apps/details?id=com.dtehm.insurance" target="_blank" rel="noopener noreferrer" class="btn-green-custom" style="padding: 0.8rem 2rem;"><i class="fab fa-google-play me-2"></i>Get the App</a>
                 <a href="contact.php" style="display: inline-block; background: transparent; color: var(--white); border: 2px solid var(--white); padding: 0.8rem 2rem; font-weight: 600; border-radius: 6px; text-decoration: none;"><i class="fas fa-phone me-2"></i>Contact Us</a>
