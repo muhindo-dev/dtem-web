@@ -148,6 +148,7 @@ include 'includes/header.php';
                     <div class="contact-form">
                         <div id="contactAlert"></div>
                         <form id="contactForm">
+                            <?php echo csrfField(); ?>
                             <div class="row g-3">
                                 <div class="col-md-6">
                                     <input type="text" name="name" class="form-control" placeholder="Your Name *" required>

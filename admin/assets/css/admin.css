@@ -51,7 +51,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .sidebar-header {
     padding: 1.5rem;
-    border-bottom: 1px solid rgba(255, 193, 7, 0.2);
+    border-bottom: 1px solid rgba(1, 57, 154, 0.2);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -89,7 +89,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .sidebar-user {
     padding: 1.5rem;
-    border-bottom: 1px solid rgba(255, 193, 7, 0.2);
+    border-bottom: 1px solid rgba(1, 57, 154, 0.2);
     text-align: center;
 }
 
@@ -284,7 +284,8 @@ h1, h2, h3, h4, h5, h6 {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.admin-user-menu:hover .user-dropdown {
+.admin-user-menu:hover .user-dropdown,
+.admin-user-menu .user-dropdown.show {
     display: block;
 }
 

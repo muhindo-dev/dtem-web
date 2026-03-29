@@ -147,6 +147,11 @@ try {
         throw new Exception('Invalid request method.');
     }
     
+    // Validate CSRF token
+    if (!validateCsrfToken()) {
+        throw new Exception('Invalid form submission. Please try again.');
+    }
+    
     // Process the form
     $result = saveEnrollment(
         $_POST['name'] ?? '',

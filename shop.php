@@ -15,10 +15,10 @@ $selectedCategory = isset($_GET['category']) ? (int)$_GET['category'] : 0;
 
 // Get products
 if ($selectedCategory > 0) {
-    $stmt = $pdo->prepare("SELECT p.*, pc.category as category_name FROM products p LEFT JOIN product_categories pc ON p.category = pc.id WHERE p.status = 'active' AND p.category = ? ORDER BY p.name");
+    $stmt = $pdo->prepare("SELECT p.*, pc.category as category_name FROM products p LEFT JOIN product_categories pc ON p.category = pc.id WHERE p.status = 'Active' AND p.category = ? ORDER BY p.name");
     $stmt->execute([$selectedCategory]);
 } else {
-    $stmt = $pdo->query("SELECT p.*, pc.category as category_name FROM products p LEFT JOIN product_categories pc ON p.category = pc.id WHERE p.status = 'active' ORDER BY p.name");
+    $stmt = $pdo->query("SELECT p.*, pc.category as category_name FROM products p LEFT JOIN product_categories pc ON p.category = pc.id WHERE p.status = 'Active' ORDER BY p.name");
 }
 $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
@@ -56,12 +56,12 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <?php else: ?>
             <div class="row g-4">
                 <?php foreach ($products as $product): ?>
-                <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="col-lg-6 col-md-6">
                     <a href="product-detail.php?id=<?php echo $product['id']; ?>" style="text-decoration: none;">
                     <div class="product-card">
                         <div class="product-image">
                             <?php if (!empty($product['feature_photo'])): ?>
-                            <img src="<?php echo htmlspecialchars($product['feature_photo']); ?>" alt="<?php echo htmlspecialchars($product['name']); ?>">
+                            <img src="<?php echo htmlspecialchars(API_STORAGE_URL . $product['feature_photo']); ?>" alt="<?php echo htmlspecialchars($product['name']); ?>">
                             <?php else: ?>
                             <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: var(--light-blue);">
                                 <i class="fas fa-leaf" style="font-size: 3rem; color: var(--primary-blue); opacity: 0.3;"></i>

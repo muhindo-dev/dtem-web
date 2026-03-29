@@ -482,13 +482,13 @@ include 'includes/header.php';
                 <div class="share-section">
                     <h5>Share your support</h5>
                     <div class="share-buttons">
-                        <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo urlencode('https://ulfa.org'); ?>" target="_blank" class="share-btn facebook">
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo urlencode('https://dtehmhealth.com'); ?>" target="_blank" class="share-btn facebook">
                             <i class="fab fa-facebook-f"></i>
                         </a>
-                        <a href="https://twitter.com/intent/tweet?text=<?php echo urlencode('I just donated to DTEHM to support orphaned children in Uganda! Join me: https://ulfa.org'); ?>" target="_blank" class="share-btn twitter">
+                        <a href="https://twitter.com/intent/tweet?text=<?php echo urlencode('I just donated to DTEHM to support orphaned children in Uganda! Join me: https://dtehmhealth.com'); ?>" target="_blank" class="share-btn twitter">
                             <i class="fab fa-twitter"></i>
                         </a>
-                        <a href="https://wa.me/?text=<?php echo urlencode('I just donated to DTEHM to support orphaned children in Uganda! Join me: https://ulfa.org'); ?>" target="_blank" class="share-btn whatsapp">
+                        <a href="https://wa.me/?text=<?php echo urlencode('I just donated to DTEHM to support orphaned children in Uganda! Join me: https://dtehmhealth.com'); ?>" target="_blank" class="share-btn whatsapp">
                             <i class="fab fa-whatsapp"></i>
                         </a>
                     </div>

@@ -29,6 +29,12 @@ body { font-family: 'Inter', sans-serif; line-height: 1.6; color: #1a1a1a; overf
 h1, h2, h3, h4, h5, h6 { font-family: 'Poppins', sans-serif; font-weight: 700; color: var(--primary-blue); }
 html { scroll-behavior: smooth; }
 
+/* Accessibility - Focus styles for keyboard navigation */
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+    outline: 2px solid var(--primary-green);
+    outline-offset: 2px;
+}
+
 /* Navigation */
 .navbar { background: var(--primary-blue) !important; padding: 0.8rem 0; box-shadow: 0 2px 15px rgba(1,57,154,0.15); transition: all 0.3s; }
 .navbar.scrolled { padding: 0.4rem 0; background: rgba(1,57,154,0.98) !important; }
@@ -45,6 +51,10 @@ html { scroll-behavior: smooth; }
 }
 .navbar-toggler:focus { 
     box-shadow: none !important; 
+    outline: none;
+}
+.navbar-toggler:focus-visible { 
+    box-shadow: 0 0 0 3px rgba(4,160,40,0.5) !important; 
     outline: none;
 }
 .navbar-toggler-icon { 
@@ -443,8 +453,8 @@ footer { background: #0a1628; color: var(--white); padding: 3.5rem 0 1.5rem; }
 .faq-item .faq-question { padding: 1.25rem 1.5rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 600; color: var(--primary-blue); transition: all 0.3s; }
 .faq-item .faq-question:hover { background: var(--light-blue); }
 .faq-item .faq-question i { transition: transform 0.3s; color: var(--primary-green); }
-.faq-item.active .faq-question i { transform: rotate(180deg); }
-.faq-item .faq-answer { padding: 0 1.5rem 1.25rem; color: var(--gray-text); line-height: 1.7; display: none; }
+.faq-item.active .faq-question i, .faq-question[aria-expanded="true"] i { transform: rotate(180deg); }
+.faq-item .faq-answer { padding: 0 1.5rem 1.25rem; color: var(--gray-text); line-height: 1.7; }
 .faq-item.active .faq-answer { display: block; }
 
 /* Insurance */

@@ -37,7 +37,7 @@ $relatedProducts = $relatedStmt->fetchAll(PDO::FETCH_ASSOC);
 include 'includes/header.php';
 
 // Product Structured Data
-$productImage = !empty($product['feature_photo']) ? 'https://dtehmhealth.com/' . $product['feature_photo'] : '';
+$productImage = !empty($product['feature_photo']) ? API_STORAGE_URL . $product['feature_photo'] : '';
 $currency = getCurrency();
 ?>
 
@@ -54,7 +54,7 @@ $currency = getCurrency();
     },
     "offers": {
         "@type": "Offer",
-        "price": "<?php echo $product['price']; ?>",
+        "price": "<?php echo $product['price_1']; ?>",
         "priceCurrency": "<?php echo htmlspecialchars($currency['code'] ?? 'UGX'); ?>",
         "availability": "https://schema.org/InStock",
         "seller": {
@@ -88,7 +88,7 @@ $currency = getCurrency();
                 <div class="col-lg-5">
                     <div class="detail-sticky" style="background: var(--light-blue); border-radius: 12px; overflow: hidden;">
                         <?php if (!empty($product['feature_photo'])): ?>
-                        <img src="<?php echo htmlspecialchars($product['feature_photo']); ?>" alt="<?php echo htmlspecialchars($product['name']); ?>" style="width: 100%; height: auto; display: block;">
+                        <img src="<?php echo htmlspecialchars(API_STORAGE_URL . $product['feature_photo']); ?>" alt="<?php echo htmlspecialchars($product['name']); ?>" style="width: 100%; height: auto; display: block;">
                         <?php else: ?>
                         <div class="hero-img-placeholder">
                             <i class="fas fa-leaf" style="font-size: 3rem; color: var(--primary-blue); opacity: 0.2;"></i>
@@ -98,7 +98,7 @@ $currency = getCurrency();
                         <?php if (!empty($productImages)): ?>
                         <div style="display: flex; gap: 0.5rem; padding: 0.75rem; overflow-x: auto;">
                             <?php foreach ($productImages as $img): ?>
-                            <img src="uploads/products/<?php echo htmlspecialchars($img['photo']); ?>" alt="<?php echo htmlspecialchars($product['name']); ?> - Product Image" class="product-thumb">
+                            <img src="<?php echo htmlspecialchars(API_STORAGE_URL . $img['photo']); ?>" alt="<?php echo htmlspecialchars($product['name']); ?> - Product Image" class="product-thumb">
                             <?php endforeach; ?>
                         </div>
                         <?php endif; ?>
@@ -235,12 +235,12 @@ $currency = getCurrency();
             </div>
             <div class="row g-4">
                 <?php foreach ($relatedProducts as $rp): ?>
-                <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="col-lg-6 col-md-6">
                     <a href="product-detail.php?id=<?php echo $rp['id']; ?>" style="text-decoration: none;">
                         <div class="product-card">
                             <div class="product-image">
                                 <?php if (!empty($rp['feature_photo'])): ?>
-                                <img src="<?php echo htmlspecialchars($rp['feature_photo']); ?>" alt="<?php echo htmlspecialchars($rp['name']); ?>">
+                                <img src="<?php echo htmlspecialchars(API_STORAGE_URL . $rp['feature_photo']); ?>" alt="<?php echo htmlspecialchars($rp['name']); ?>">
                                 <?php else: ?>
                                 <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: var(--light-blue);">
                                     <i class="fas fa-leaf" style="font-size: 3rem; color: var(--primary-blue); opacity: 0.3;"></i>

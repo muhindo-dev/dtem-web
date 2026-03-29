@@ -43,7 +43,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)):
 
     <!-- Dynamic: Events -->
 <?php
-$stmt = $pdo->query("SELECT id, updated_at FROM events WHERE status = 'active' ORDER BY start_datetime DESC");
+$stmt = $pdo->query("SELECT id, updated_at FROM events WHERE status IN ('upcoming','ongoing') ORDER BY start_datetime DESC");
 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)):
 ?>
     <url><loc><?php echo $baseUrl; ?>/event-detail.php?id=<?php echo $row['id']; ?></loc><lastmod><?php echo date('Y-m-d', strtotime($row['updated_at'])); ?></lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url>

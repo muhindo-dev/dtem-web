@@ -36,11 +36,10 @@ $customHeadCode = getSetting('custom_head_code');
     <?php if ($siteFavicon): 
         $faviconExt = strtolower(pathinfo($siteFavicon, PATHINFO_EXTENSION));
         $faviconType = ($faviconExt === 'ico') ? 'image/x-icon' : 'image/' . $faviconExt;
-        $faviconPath = '/' . ltrim($siteFavicon, '/');
     ?>
-    <link rel="icon" type="<?php echo $faviconType; ?>" href="<?php echo $faviconPath; ?>">
-    <link rel="shortcut icon" type="<?php echo $faviconType; ?>" href="<?php echo $faviconPath; ?>">
-    <link rel="apple-touch-icon" href="<?php echo $faviconPath; ?>">
+    <link rel="icon" type="<?php echo $faviconType; ?>" href="<?php echo htmlspecialchars($siteFavicon); ?>">
+    <link rel="shortcut icon" type="<?php echo $faviconType; ?>" href="<?php echo htmlspecialchars($siteFavicon); ?>">
+    <link rel="apple-touch-icon" href="<?php echo htmlspecialchars($siteFavicon); ?>">
     <?php endif; ?>
     
     <!-- Open Graph / Social Media -->
@@ -110,7 +109,7 @@ $customHeadCode = getSetting('custom_head_code');
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css">
-    <link rel="stylesheet" href="assets/css/style.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
     
     <?php if ($enableAnalytics && $googleAnalyticsId): ?>
     <script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo htmlspecialchars($googleAnalyticsId); ?>"></script>
@@ -141,7 +140,7 @@ $customHeadCode = getSetting('custom_head_code');
                     <span class="brand-sub"><?php echo htmlspecialchars($siteTagline); ?></span>
                 </span>
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">

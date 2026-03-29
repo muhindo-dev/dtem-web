@@ -184,7 +184,7 @@
                     <span>View Site</span>
                 </a>
                 <div class="admin-user-menu">
-                    <button class="user-menu-toggle">
+                    <button class="user-menu-toggle" onclick="this.closest('.admin-user-menu').querySelector('.user-dropdown').classList.toggle('show')">
                         <i class="fas fa-user-circle"></i>
                         <span><?php echo htmlspecialchars($currentAdmin['name']); ?></span>
                         <i class="fas fa-chevron-down"></i>

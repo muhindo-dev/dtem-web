@@ -18,7 +18,7 @@ $stmt = $pdo->query("SELECT * FROM team_members WHERE status = 'active' ORDER BY
 $teamMembers = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 $totalMembers = $pdo->query("SELECT COUNT(*) FROM users WHERE is_dtehm_member = 1")->fetchColumn();
-$totalProducts = $pdo->query("SELECT COUNT(*) FROM products WHERE status = 'active'")->fetchColumn();
+$totalProducts = $pdo->query("SELECT COUNT(*) FROM products WHERE status = 'Active'")->fetchColumn();
 ?>
 
     <!-- Page Header -->

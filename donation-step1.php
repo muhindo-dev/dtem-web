@@ -33,6 +33,9 @@ $all_causes = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 // Handle form submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (!validateCsrfToken()) {
+        $errors[] = 'Invalid form submission. Please try again.';
+    } else {
     $errors = [];
     
     // Sanitize and validate inputs
@@ -90,6 +93,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         header('Location: donation-step2.php');
         exit;
     }
+    } // end CSRF else
 }
 
 include 'includes/header.php';
@@ -395,6 +399,7 @@ textarea.form-control {
             <?php endif; ?>
             
             <form method="POST" action="" id="donationForm">
+                <?php echo csrfField(); ?>
                 <!-- Amount Selection -->
                 <div class="section-title">
                     <i class="fas fa-coins"></i> Select Amount (<?php echo $currencySymbol; ?>)

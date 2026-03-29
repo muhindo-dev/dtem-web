@@ -60,8 +60,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['initiate_payment'])) 
             // Build callback URL
             $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http';
             $host = $_SERVER['HTTP_HOST'];
-            $callback_url = $protocol . '://' . $host . '/ulfa/donation-step3.php';
-            $cancellation_url = $protocol . '://' . $host . '/ulfa/donation-step1.php';
+            $callback_url = $protocol . '://' . $host . '/donation-step3.php';
+            $cancellation_url = $protocol . '://' . $host . '/donation-step1.php';
             
             // Build description
             $description = 'Donation to DTEHM';

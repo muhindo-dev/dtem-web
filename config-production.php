@@ -7,6 +7,9 @@ define('DB_USER', 'your_db_username'); // Your production database username
 define('DB_PASS', 'your_db_password'); // Your production database password
 define('DB_SOCKET', ''); // Leave empty for standard connections, or specify socket path
 
+// API Storage URL - where product images are served from
+define('API_STORAGE_URL', 'https://dip.dtehmhealth.com/storage/');
+
 // Admin password - CHANGE THIS TO A STRONG PASSWORD
 define('ADMIN_PASSWORD', 'change_this_to_strong_password');
 

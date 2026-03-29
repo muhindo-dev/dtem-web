@@ -44,9 +44,9 @@ try {
         try {
             $stmt = $pdo->query("SELECT COUNT(*) FROM events");
             $stats['events']['total'] = $stmt->fetchColumn();
-            $stmt = $pdo->query("SELECT COUNT(*) FROM events WHERE event_date >= CURDATE()");
+            $stmt = $pdo->query("SELECT COUNT(*) FROM events WHERE start_datetime >= NOW()");
             $stats['events']['upcoming'] = $stmt->fetchColumn();
-            $stmt = $pdo->query("SELECT COUNT(*) FROM events WHERE event_date < CURDATE()");
+            $stmt = $pdo->query("SELECT COUNT(*) FROM events WHERE start_datetime < NOW()");
             $stats['events']['past'] = $stmt->fetchColumn();
         } catch (PDOException $e) {}
         

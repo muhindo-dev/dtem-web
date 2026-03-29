@@ -19,6 +19,9 @@ include 'includes/header.php';
 $successMessage = '';
 $errorMessage = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (!validateCsrfToken()) {
+        $errorMessage = 'Invalid form submission. Please try again.';
+    } else {
     $name = trim($_POST['name'] ?? '');
     $email = trim($_POST['email'] ?? '');
     $phone = trim($_POST['phone'] ?? '');
@@ -31,14 +34,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $errorMessage = 'Please enter a valid email address.';
     } else {
         try {
-            $stmt = $pdo->prepare("INSERT INTO contact_inquiries (name, email, phone, subject, message, status, created_at) VALUES (?, ?, ?, ?, ?, 'new', NOW())");
-            $stmt->execute([$name, $email, $phone, $subject, $message]);
+            $stmt = $pdo->prepare("INSERT INTO contact_inquiries (name, email, phone, subject, message, status, ip_address, created_at) VALUES (?, ?, ?, ?, ?, 'new', ?, NOW())");
+            $stmt->execute([$name, $email, $phone, $subject, $message, $_SERVER['REMOTE_ADDR'] ?? null]);
             $successMessage = 'Thank you for your message! We will get back to you soon.';
         } catch (PDOException $e) {
             $errorMessage = 'Sorry, there was an error sending your message. Please try again.';
             error_log("Contact form error: " . $e->getMessage());
         }
     }
+    } // end CSRF else
 }
 ?>
 
@@ -113,23 +117,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <?php endif; ?>
                         
                         <form method="POST" class="contact-form">
+                            <?php echo csrfField(); ?>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <input type="text" name="name" class="form-control" placeholder="Your Name *" required value="<?php echo htmlspecialchars($_POST['name'] ?? ''); ?>">
+                                    <label for="contact-name" class="visually-hidden">Your Name</label>
+                                    <input type="text" id="contact-name" name="name" class="form-control" placeholder="Your Name *" required value="<?php echo htmlspecialchars($_POST['name'] ?? ''); ?>">
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="email" name="email" class="form-control" placeholder="Your Email *" required value="<?php echo htmlspecialchars($_POST['email'] ?? ''); ?>">
+                                    <label for="contact-email" class="visually-hidden">Your Email</label>
+                                    <input type="email" id="contact-email" name="email" class="form-control" placeholder="Your Email *" required value="<?php echo htmlspecialchars($_POST['email'] ?? ''); ?>">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <input type="tel" name="phone" class="form-control" placeholder="Phone Number" value="<?php echo htmlspecialchars($_POST['phone'] ?? ''); ?>">
+                                    <label for="contact-phone" class="visually-hidden">Phone Number</label>
+                                    <input type="tel" id="contact-phone" name="phone" class="form-control" placeholder="Phone Number" value="<?php echo htmlspecialchars($_POST['phone'] ?? ''); ?>">
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" name="subject" class="form-control" placeholder="Subject" value="<?php echo htmlspecialchars($_POST['subject'] ?? ''); ?>">
+                                    <label for="contact-subject" class="visually-hidden">Subject</label>
+                                    <input type="text" id="contact-subject" name="subject" class="form-control" placeholder="Subject" value="<?php echo htmlspecialchars($_POST['subject'] ?? ''); ?>">
                                 </div>
                             </div>
-                            <textarea name="message" class="form-control" rows="5" placeholder="Your Message *" required><?php echo htmlspecialchars($_POST['message'] ?? ''); ?></textarea>
+                            <label for="contact-message" class="visually-hidden">Your Message</label>
+                            <textarea id="contact-message" name="message" class="form-control" rows="5" placeholder="Your Message *" required><?php echo htmlspecialchars($_POST['message'] ?? ''); ?></textarea>
                             <button type="submit" class="btn-submit mt-2">
                                 <i class="fas fa-paper-plane me-2"></i>Send Message
                             </button>

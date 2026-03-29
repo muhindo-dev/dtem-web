@@ -24,6 +24,11 @@ define('DB_USER', 'root');
 define('DB_PASS', 'root');
 define('DB_SOCKET', '/Applications/MAMP/tmp/mysql/mysql.sock'); // Leave empty '' for production/online hosting
 
+// API Storage URL - where product images are served from
+// The insurance API stores product images at this base URL
+// Development: points to live API subdomain; Production: same
+define('API_STORAGE_URL', 'https://dip.dtehmhealth.com/storage/');
+
 // DEPRECATED: ADMIN_PASSWORD is no longer used
 // Admin authentication now uses database-stored hashed passwords
 // Use admin/setup-admins.php to create admin accounts

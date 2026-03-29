@@ -23,12 +23,12 @@ $pageDescription = substr(strip_tags($event['description']), 0, 160);
 
 // Check if event is past
 $isPast = strtotime($event['start_datetime']) < time();
-$spotsRemaining = $event['capacity'] ? ($event['capacity'] - $event['registered_count']) : null;
+$spotsRemaining = $event['max_capacity'] ? ($event['max_capacity'] - $event['current_registrations']) : null;
 
 include 'includes/header.php';
 
 // Event Structured Data
-$eventImage = !empty($event['featured_image']) ? 'https://dtehmhealth.com/uploads/' . $event['featured_image'] : '';
+$eventImage = !empty($event['event_image']) ? 'https://dtehmhealth.com/uploads/' . $event['event_image'] : '';
 $eventDate = date('Y-m-d\TH:i:s', strtotime($event['start_datetime']));
 $eventEndDate = !empty($event['end_datetime']) ? date('Y-m-d\TH:i:s', strtotime($event['end_datetime'])) : $eventDate;
 ?>
@@ -43,8 +43,8 @@ $eventEndDate = !empty($event['end_datetime']) ? date('Y-m-d\TH:i:s', strtotime(
     "endDate": "<?php echo $eventEndDate; ?>",
     "location": {
         "@type": "Place",
-        "name": "<?php echo htmlspecialchars($event['location']); ?>",
-        "address": "<?php echo htmlspecialchars($event['location']); ?>"
+        "name": "<?php echo htmlspecialchars($event['venue_name']); ?>",
+        "address": "<?php echo htmlspecialchars($event['venue_address'] ?? $event['venue_name']); ?>"
     },
     "organizer": {
         "@type": "Organization",
@@ -89,9 +89,9 @@ $eventEndDate = !empty($event['end_datetime']) ? date('Y-m-d\TH:i:s', strtotime(
         <div class="row">
             <!-- Main Content -->
             <div class="col-lg-8">
-                <?php if (!empty($event['featured_image'] ?? '')): ?>
+                <?php if (!empty($event['event_image'] ?? '')): ?>
                 <div style="margin-bottom: 2.5rem; border: 2px solid var(--primary-blue); overflow: hidden;">
-                    <img src="<?php echo htmlspecialchars($event['featured_image']); ?>" alt="<?php echo htmlspecialchars($event['title']); ?>" style="width: 100%; height: auto; display: block;">
+                    <img src="uploads/<?php echo htmlspecialchars($event['event_image']); ?>" alt="<?php echo htmlspecialchars($event['title']); ?>" style="width: 100%; height: auto; display: block;">
                 </div>
                 <?php endif; ?>
                 
@@ -163,7 +163,7 @@ $eventEndDate = !empty($event['end_datetime']) ? date('Y-m-d\TH:i:s', strtotime(
                                 </div>
                                 <div>
                                     <strong style="display: block; color: var(--primary-blue); margin-bottom: 0.25rem;">Location</strong>
-                                    <span style="color: #666;"><?php echo htmlspecialchars($event['venue'] ?? 'TBA'); ?></span>
+                                    <span style="color: #666;"><?php echo htmlspecialchars($event['venue_name'] ?? 'TBA'); ?></span>
                                 </div>
                             </div>
 

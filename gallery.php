@@ -97,7 +97,7 @@ foreach ($albums as &$album) {
             <div class="row g-4">
                 <?php foreach ($albums as $album): ?>
                 <div class="col-lg-4 col-md-6">
-                    <div class="gallery-album-card" style="border: 2px solid var(--primary-blue); border-radius: 0; overflow: hidden; position: relative; height: 320px; cursor: pointer; transition: transform 0.3s;">
+                    <div class="gallery-album-card" style="border: 2px solid var(--primary-blue); border-radius: 0; overflow: hidden; position: relative; min-height: 320px; cursor: pointer; transition: transform 0.3s;">
                         <a href="gallery-album.php?id=<?php echo $album['id']; ?>" style="display: block; height: 100%; text-decoration: none;">
                             <?php if ($album['cover_image']): 
                                 $coverImgPath = $album['cover_image'];

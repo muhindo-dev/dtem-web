@@ -34,7 +34,7 @@ $relatedCauses = $relatedStmt->fetchAll(PDO::FETCH_ASSOC);
 include 'includes/header.php';
 
 // Cause Structured Data
-$causeImage = !empty($cause['featured_image']) ? 'https://dtehmhealth.com/uploads/' . $cause['featured_image'] : '';
+$causeImage = !empty($cause['cause_image']) ? 'https://dtehmhealth.com/uploads/' . $cause['cause_image'] : '';
 ?>
 <script type="application/ld+json">
 {
@@ -98,9 +98,9 @@ $causeImage = !empty($cause['featured_image']) ? 'https://dtehmhealth.com/upload
         <div class="row g-4">
             <!-- Main Content -->
             <div class="col-lg-8">
-                <?php if ($cause['featured_image']): ?>
+                <?php if ($cause['cause_image']): ?>
                 <div style="margin-bottom: 3rem; border: 2px solid var(--primary-blue); overflow: hidden;">
-                    <img src="<?php echo htmlspecialchars($cause['featured_image']); ?>" alt="<?php echo htmlspecialchars($cause['title']); ?>" style="width: 100%; height: auto; display: block;">
+                    <img src="uploads/<?php echo htmlspecialchars($cause['cause_image']); ?>" alt="<?php echo htmlspecialchars($cause['title']); ?>" style="width: 100%; height: auto; display: block;">
                 </div>
                 <?php endif; ?>
                 
@@ -220,9 +220,9 @@ $causeImage = !empty($cause['featured_image']) ? 'https://dtehmhealth.com/upload
             ?>
             <div class="col-lg-4 col-md-6">
                 <div style="border: 2px solid var(--primary-blue); overflow: hidden; height: 100%; display: flex; flex-direction: column; background: #fff; transition: all 0.3s;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='8px 8px 0 var(--primary-yellow)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
-                    <?php if ($related['featured_image']): ?>
+                    <?php if ($related['cause_image']): ?>
                     <div style="height: 220px; overflow: hidden; position: relative;">
-                        <img src="<?php echo htmlspecialchars($related['featured_image']); ?>" alt="<?php echo htmlspecialchars($related['title']); ?>" style="width: 100%; height: 100%; object-fit: cover;">
+                        <img src="uploads/<?php echo htmlspecialchars($related['cause_image']); ?>" alt="<?php echo htmlspecialchars($related['title']); ?>" style="width: 100%; height: 100%; object-fit: cover;">
                         <div style="position: absolute; bottom: 1rem; left: 1rem; background: var(--primary-yellow); color: var(--primary-black); padding: 0.4rem 0.8rem; font-weight: 800; font-size: 0.85rem; letter-spacing: 0.5px;">
                             <?php echo number_format($relPercentage, 1); ?>% FUNDED
                         </div>

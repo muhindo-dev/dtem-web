@@ -16,12 +16,12 @@ $pageDescription = $siteDescription;
 include 'includes/header.php';
 
 // Fetch featured products
-$stmt = $pdo->query("SELECT p.*, pc.category as category_name FROM products p LEFT JOIN product_categories pc ON p.category = pc.id WHERE p.status = 'active' ORDER BY p.id DESC LIMIT 8");
+$stmt = $pdo->query("SELECT p.*, pc.category as category_name FROM products p LEFT JOIN product_categories pc ON p.category = pc.id WHERE p.status = 'Active' ORDER BY p.id DESC LIMIT 8");
 $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 // Fetch stats
 $totalMembers = $pdo->query("SELECT COUNT(*) FROM users WHERE is_dtehm_member = 1")->fetchColumn();
-$totalProducts = $pdo->query("SELECT COUNT(*) FROM products WHERE status = 'active'")->fetchColumn();
+$totalProducts = $pdo->query("SELECT COUNT(*) FROM products WHERE status = 'Active'")->fetchColumn();
 $totalMemberships = $pdo->query("SELECT COUNT(*) FROM dtehm_memberships WHERE status = 'paid'")->fetchColumn();
 
 // Fetch latest news
@@ -167,12 +167,12 @@ $teamMembers = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </div>
             <div class="row g-4">
                 <?php foreach ($products as $product): ?>
-                <div class="col-lg-3 col-md-6">
+                <div class="col-lg-6 col-md-6">
                     <a href="product-detail.php?id=<?php echo $product['id']; ?>" style="text-decoration: none; color: inherit; display: block;">
                     <div class="product-card">
                         <div class="product-image">
                             <?php if (!empty($product['feature_photo'])): ?>
-                            <img src="<?php echo htmlspecialchars($product['feature_photo']); ?>" alt="<?php echo htmlspecialchars($product['name']); ?>">
+                            <img src="<?php echo htmlspecialchars(API_STORAGE_URL . $product['feature_photo']); ?>" alt="<?php echo htmlspecialchars($product['name']); ?>">
                             <?php else: ?>
                             <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: var(--light-blue);">
                                 <i class="fas fa-leaf" style="font-size: 3rem; color: var(--primary-blue); opacity: 0.3;"></i>

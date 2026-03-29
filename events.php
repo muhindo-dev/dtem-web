@@ -95,8 +95,8 @@ $totalPages = ceil($totalEvents / $perPage);
                                 <div><i class="fas fa-map-marker-alt" style="color: var(--primary-green); width: 24px;"></i> <?php echo htmlspecialchars($event['venue_name'] ?? ''); ?></div>
                                 <?php if (!empty($event['registration_required']) && $filter === 'upcoming'): ?>
                                 <div><i class="fas fa-users" style="color: var(--primary-green); width: 24px;"></i> 
-                                    <?php if (!empty($event['capacity'])): ?>
-                                        <?php echo (($event['capacity'] ?? 0) - ($event['registered_count'] ?? 0)); ?> spots remaining
+                                    <?php if (!empty($event['max_capacity'])): ?>
+                                        <?php echo (($event['max_capacity'] ?? 0) - ($event['current_registrations'] ?? 0)); ?> spots remaining
                                     <?php else: ?>
                                         Registration required
                                     <?php endif; ?>

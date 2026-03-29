@@ -6,12 +6,17 @@ function setHeroHeight() {
         const navbarHeight = navbar ? navbar.offsetHeight : 0;
         const remainingHeight = window.innerHeight;
         
-        // Set hero height to full viewport
-        hero.style.minHeight = `${remainingHeight}px`;
-        hero.style.height = `${remainingHeight}px`;
-        
-        // Add padding-top to account for fixed navbar (so content isn't hidden)
-        hero.style.paddingTop = `${navbarHeight}px`;
+        if (window.innerWidth > 768) {
+            // Set hero height to full viewport on desktop
+            hero.style.minHeight = `${remainingHeight}px`;
+            hero.style.height = `${remainingHeight}px`;
+            hero.style.paddingTop = `${navbarHeight}px`;
+        } else {
+            // Let CSS handle mobile sizing
+            hero.style.minHeight = '';
+            hero.style.height = '';
+            hero.style.paddingTop = `${navbarHeight}px`;
+        }
     }
 }
 
