@@ -26,7 +26,33 @@ $isPast = strtotime($event['start_datetime']) < time();
 $spotsRemaining = $event['capacity'] ? ($event['capacity'] - $event['registered_count']) : null;
 
 include 'includes/header.php';
+
+// Event Structured Data
+$eventImage = !empty($event['featured_image']) ? 'https://dtehmhealth.com/uploads/' . $event['featured_image'] : '';
+$eventDate = date('Y-m-d\TH:i:s', strtotime($event['start_datetime']));
+$eventEndDate = !empty($event['end_datetime']) ? date('Y-m-d\TH:i:s', strtotime($event['end_datetime'])) : $eventDate;
 ?>
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Event",
+    "name": "<?php echo htmlspecialchars($event['title']); ?>",
+    "description": "<?php echo htmlspecialchars($pageDescription); ?>",
+    "image": "<?php echo $eventImage; ?>",
+    "startDate": "<?php echo $eventDate; ?>",
+    "endDate": "<?php echo $eventEndDate; ?>",
+    "location": {
+        "@type": "Place",
+        "name": "<?php echo htmlspecialchars($event['location']); ?>",
+        "address": "<?php echo htmlspecialchars($event['location']); ?>"
+    },
+    "organizer": {
+        "@type": "Organization",
+        "name": "DTEHM Health Ministries",
+        "url": "https://dtehmhealth.com"
+    }
+}
+</script>
 
 <!-- Page Header -->
 <section style="padding: 120px 0 60px; background: linear-gradient(135deg, var(--primary-blue), var(--dark-blue));">

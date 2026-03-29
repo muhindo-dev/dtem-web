@@ -26,7 +26,9 @@ echo '<?xml version="1.0" encoding="UTF-8"?>';
     <url><loc><?php echo $baseUrl; ?>/causes.php</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
     <url><loc><?php echo $baseUrl; ?>/gallery.php</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
     <url><loc><?php echo $baseUrl; ?>/donate.php</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-    <url><loc><?php echo $baseUrl; ?>/get-involved.php</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+    <url><loc><?php echo $baseUrl; ?>/programs.php</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+    <url><loc><?php echo $baseUrl; ?>/resources.php</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+    <url><loc><?php echo $baseUrl; ?>/stories.php</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
 
     <!-- Dynamic: News Posts -->
 <?php

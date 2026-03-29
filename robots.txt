@@ -10,4 +10,4 @@ Disallow: /donate-process.php
 Disallow: /donate-verify.php
 Disallow: /donation-ipn.php
 
-Sitemap: https://dtehmhealth.com/sitemap.xml
+Sitemap: https://dtehmhealth.com/sitemap.php

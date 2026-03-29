@@ -21,6 +21,33 @@ $videoTestimonials = [
 ];
 ?>
 
+<!-- Testimonials Structured Data -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "DTEHM Health Ministries Testimonials",
+    "description": "<?php echo htmlspecialchars($pageDescription); ?>",
+    "mainEntity": {
+        "@type": "ItemList",
+        "itemListElement": [
+<?php foreach ($videoTestimonials as $index => $video): ?>
+            {
+                "@type": "VideoObject",
+                "position": <?php echo $index + 1; ?>,
+                "name": "<?php echo htmlspecialchars($video['title']); ?> <?php echo $index + 1; ?> - DTEHM Health Ministries",
+                "description": "Customer testimonial for DTEHM Health Ministries natural health products and services",
+                "thumbnailUrl": "https://img.youtube.com/vi/<?php echo htmlspecialchars($video['id']); ?>/maxresdefault.jpg",
+                "uploadDate": "2025-01-01",
+                "contentUrl": "https://www.youtube.com/watch?v=<?php echo htmlspecialchars($video['id']); ?>",
+                "embedUrl": "https://www.youtube.com/embed/<?php echo htmlspecialchars($video['id']); ?>"
+            }<?php echo $index < count($videoTestimonials) - 1 ? ',' : ''; ?>
+<?php endforeach; ?>
+        ]
+    }
+}
+</script>
+
     <!-- Page Header -->
     <div class="page-header">
         <div class="container">

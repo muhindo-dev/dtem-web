@@ -35,7 +35,35 @@ $relatedStmt->execute([$product['category'], $id]);
 $relatedProducts = $relatedStmt->fetchAll(PDO::FETCH_ASSOC);
 
 include 'includes/header.php';
+
+// Product Structured Data
+$productImage = !empty($product['feature_photo']) ? 'https://dtehmhealth.com/' . $product['feature_photo'] : '';
+$currency = getCurrency();
 ?>
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "<?php echo htmlspecialchars($product['name']); ?>",
+    "description": "<?php echo htmlspecialchars(substr(strip_tags($product['description'] ?? ''), 0, 200)); ?>",
+    "image": "<?php echo $productImage; ?>",
+    "brand": {
+        "@type": "Brand",
+        "name": "DTEHM Health Ministries"
+    },
+    "offers": {
+        "@type": "Offer",
+        "price": "<?php echo $product['price']; ?>",
+        "priceCurrency": "<?php echo htmlspecialchars($currency['code'] ?? 'UGX'); ?>",
+        "availability": "https://schema.org/InStock",
+        "seller": {
+            "@type": "Organization",
+            "name": "DTEHM Health Ministries"
+        }
+    }
+}
+</script>
 
     <!-- Page Header -->
     <div class="page-header" style="padding: 100px 0 1.5rem;">
@@ -70,7 +98,7 @@ include 'includes/header.php';
                         <?php if (!empty($productImages)): ?>
                         <div style="display: flex; gap: 0.5rem; padding: 0.75rem; overflow-x: auto;">
                             <?php foreach ($productImages as $img): ?>
-                            <img src="uploads/products/<?php echo htmlspecialchars($img['photo']); ?>" alt="" class="product-thumb">
+                            <img src="uploads/products/<?php echo htmlspecialchars($img['photo']); ?>" alt="<?php echo htmlspecialchars($product['name']); ?> - Product Image" class="product-thumb">
                             <?php endforeach; ?>
                         </div>
                         <?php endif; ?>

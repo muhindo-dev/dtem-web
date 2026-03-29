@@ -13,6 +13,9 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 }
 
 // Get and validate donation amount
+$pageTitle = 'Confirm Donation';
+$pageDescription = 'Confirm your donation details before processing your DTEHM contribution.';
+$noIndex = true;
 $amount_preset = $_POST['amount_preset'] ?? '';
 $custom_amount = $_POST['custom_amount'] ?? 0;
 

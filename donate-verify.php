@@ -7,6 +7,9 @@ require_once 'includes/pesapal-config.php';
 $currency = getCurrency();
 
 // Get Pesapal callback parameters
+$pageTitle = 'Verify Donation';
+$pageDescription = 'Verify your DTEHM donation payment status and receive your confirmation.';
+$noIndex = true;
 $merchant_reference = $_GET['pesapal_merchant_reference'] ?? $_SESSION['pending_donation']['merchant_reference'] ?? null;
 $tracking_id = $_GET['pesapal_transaction_tracking_id'] ?? null;
 

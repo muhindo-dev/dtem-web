@@ -32,7 +32,35 @@ $relatedStmt->execute([$id]);
 $relatedCauses = $relatedStmt->fetchAll(PDO::FETCH_ASSOC);
 
 include 'includes/header.php';
+
+// Cause Structured Data
+$causeImage = !empty($cause['featured_image']) ? 'https://dtehmhealth.com/uploads/' . $cause['featured_image'] : '';
 ?>
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FundraisingCampaign",
+    "name": "<?php echo htmlspecialchars($cause['title']); ?>",
+    "description": "<?php echo htmlspecialchars($pageDescription); ?>",
+    "image": "<?php echo $causeImage; ?>",
+    "url": "<?php echo 'https://dtehmhealth.com/cause-detail.php?id=' . $cause['id']; ?>",
+    "goal": {
+        "@type": "MonetaryAmount",
+        "currency": "UGX",
+        "value": "<?php echo $cause['goal_amount']; ?>"
+    },
+    "raised": {
+        "@type": "MonetaryAmount",
+        "currency": "UGX",
+        "value": "<?php echo $cause['raised_amount']; ?>"
+    },
+    "organizer": {
+        "@type": "Organization",
+        "name": "DTEHM Health Ministries",
+        "url": "https://dtehmhealth.com"
+    }
+}
+</script>
 
 <!-- Page Header -->
 <section style="padding: 140px 0 80px; background: linear-gradient(135deg, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.9) 100%), url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1920') center/cover fixed;">

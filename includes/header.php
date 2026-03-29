@@ -26,6 +26,11 @@ $customHeadCode = getSetting('custom_head_code');
     <title><?php echo isset($pageTitle) ? htmlspecialchars($pageTitle) . ' - ' . $siteShortName : $metaTitle; ?></title>
     <meta name="description" content="<?php echo htmlspecialchars(isset($pageDescription) ? $pageDescription : $siteDescription); ?>">
     <meta name="keywords" content="<?php echo htmlspecialchars($metaKeywords); ?>">
+    <meta name="author" content="DTEHM Health Ministries">
+    <meta name="robots" content="<?php echo isset($noIndex) && $noIndex ? 'noindex, nofollow' : 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1'; ?>">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="<?php echo 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']; ?>">
     
     <!-- Favicon -->
     <?php if ($siteFavicon): 
@@ -42,14 +47,22 @@ $customHeadCode = getSetting('custom_head_code');
     <meta property="og:title" content="<?php echo htmlspecialchars(getSetting('og_title', $siteName)); ?>">
     <meta property="og:description" content="<?php echo htmlspecialchars(getSetting('og_description', $siteDescription)); ?>">
     <meta property="og:type" content="website">
+    <meta property="og:url" content="<?php echo 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']; ?>">
+    <meta property="og:site_name" content="<?php echo htmlspecialchars($siteName); ?>">
     <?php if ($ogImage = getSetting('og_image')): ?>
-    <meta property="og:image" content="<?php echo rtrim(dirname($_SERVER['REQUEST_URI']), '/'); ?>/uploads/<?php echo $ogImage; ?>">
+    <meta property="og:image" content="<?php echo 'https://' . $_SERVER['HTTP_HOST'] . '/uploads/' . $ogImage; ?>">
+    <meta property="og:image:alt" content="<?php echo htmlspecialchars($siteName); ?>">
     <?php endif; ?>
     
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="<?php echo htmlspecialchars(getSetting('og_title', $siteName)); ?>">
     <meta name="twitter:description" content="<?php echo htmlspecialchars(getSetting('og_description', $siteDescription)); ?>">
+    <meta name="twitter:site" content="@DTEHMHealth">
+    <?php if ($ogImage = getSetting('og_image')): ?>
+    <meta name="twitter:image" content="<?php echo 'https://' . $_SERVER['HTTP_HOST'] . '/uploads/' . $ogImage; ?>">
+    <meta name="twitter:image:alt" content="<?php echo htmlspecialchars($siteName); ?>">
+    <?php endif; ?>
     
     <!-- Schema.org Structured Data -->
     <script type="application/ld+json">

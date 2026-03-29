@@ -106,6 +106,13 @@ Options -Indexes
 # =====================================
 # SITEMAP REWRITE
 # =====================================
+# =====================================
+# ERROR PAGES
+# =====================================
+ErrorDocument 404 /404.php
+ErrorDocument 403 /404.php
+ErrorDocument 500 /404.php
+
 <IfModule mod_rewrite.c>
     RewriteRule ^sitemap\.xml$ sitemap.php [L]
 </IfModule>

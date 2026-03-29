@@ -8,6 +8,96 @@ $pageDescription = 'Frequently asked questions about DTEHM Health Ministries - p
 include 'includes/header.php';
 ?>
 
+<!-- FAQ Schema Structured Data -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+        {
+            "@type": "Question",
+            "name": "What is DTEHM Health Ministries?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "DTEHM Health Ministries is a healthcare organization based in Kasese, Uganda. We provide natural Ayurvedic and herbal health products, health insurance programs, investment opportunities, and a community-driven network marketing model to improve healthcare access and livelihoods across Uganda."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Where is DTEHM located?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Our head office is located at Kamaiba Lower, Near SDA Primary School, Kasese, Uganda. We also have branch offices in Bwera, Rugendabara, and Kisinga."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "How can I contact DTEHM?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "You can reach us by phone at +256 782 284788 or +256 705 070995, by email at dtehmhealth@gmail.com, or visit our contact page to send us a message."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "How do I become a DTEHM member?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "You can register through our enrollment page on the website or download the DTEHM mobile app. You will need a sponsor code from an existing member to join."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "What benefits do members get?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Members get access to discounted health products, can enroll in insurance programs, invest in projects, and earn commissions through the network marketing system. Active members can also become product stockists and earn additional income."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "What types of products does DTEHM sell?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "We offer a wide range of natural health products including Ayurvedic medicines, herbal supplements, personal care products, and wellness items. All products are sourced from trusted manufacturers and promote holistic health."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Are the products safe?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. Our products are natural, Ayurvedic, and herbal formulations. We recommend following the usage instructions provided with each product. Consult a healthcare professional if you have specific medical conditions."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "What insurance programs are available?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "We currently offer the Comprehensive Health Insurance program with coverage up to UGX 50,000,000 at an affordable monthly premium."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "How does DTEHM investment work?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "DTEHM offers share-based investment in healthcare projects. You can purchase shares at the listed price. As projects generate revenue, shareholders earn returns."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "How do commissions work?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "There are multiple ways to earn: Sponsor commission (8%) earned when someone you referred makes a purchase. Stockist commission (7%) earned as a product distributor. Network commissions earned from purchases across your 10-level network."
+            }
+        }
+    ]
+}
+</script>
+
     <!-- Page Header -->
     <div class="page-header">
         <div class="container">

@@ -30,7 +30,33 @@ $relatedStmt->execute([$news['category'], $id]);
 $relatedArticles = $relatedStmt->fetchAll(PDO::FETCH_ASSOC);
 
 include 'includes/header.php';
+
+// Article Structured Data
+$articleImage = !empty($news['featured_image']) ? 'https://dtehmhealth.com/uploads/' . $news['featured_image'] : '';
 ?>
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "<?php echo htmlspecialchars($news['title']); ?>",
+    "description": "<?php echo htmlspecialchars($pageDescription); ?>",
+    "image": "<?php echo $articleImage; ?>",
+    "datePublished": "<?php echo $news['published_at']; ?>",
+    "dateModified": "<?php echo $news['updated_at']; ?>",
+    "author": {
+        "@type": "Person",
+        "name": "<?php echo htmlspecialchars($news['author']); ?>"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "DTEHM Health Ministries",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://dtehmhealth.com/uploads/logo.png"
+        }
+    }
+}
+</script>
 
 <!-- Page Header -->
 <section style="padding: 120px 0 60px; background: linear-gradient(135deg, var(--primary-blue), var(--dark-blue));">
