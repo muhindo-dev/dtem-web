@@ -125,7 +125,7 @@ $teamMembers = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <div class="service-card text-center">
                         <div class="service-icon mx-auto"><i class="fas fa-project-diagram"></i></div>
                         <h3>Network & Earnings</h3>
-                        <p>Earn up to 27.5% commission on product sales across a 10-generation network. 8 leadership ranks with rewards.</p>
+                        <p>Earn up to 32.5% commission on product sales across a 10-generation network. 8 leadership ranks with rewards.</p>
                         <a href="network.php" class="btn-outline-custom mt-2" style="font-size: 0.85rem; padding: 0.5rem 1.2rem;">Join Network</a>
                     </div>
                 </div>
@@ -261,7 +261,7 @@ $teamMembers = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <p class="network-subtitle">Join our 10-generation referral network and earn commissions on every product sale. From Sponsor bonuses to leadership rewards — multiple income streams await you.</p>
                         <div class="network-highlight-grid">
                             <div class="network-highlight-card">
-                                <div class="network-highlight-number green">27.5%</div>
+                                <div class="network-highlight-number green">32.5%</div>
                                 <div class="network-highlight-label">Total Commission</div>
                             </div>
                             <div class="network-highlight-card">
@@ -296,7 +296,7 @@ $teamMembers = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 <div class="earnings-flow-item">
                                     <div class="earnings-flow-icon blue"><i class="fas fa-sitemap"></i></div>
                                     <div class="earnings-flow-label">GN 1-10</div>
-                                    <div class="earnings-flow-value">7.5%</div>
+                                    <div class="earnings-flow-value">12.5%</div>
                                 </div>
                                 <div class="earnings-flow-arrow"><i class="fas fa-chevron-right"></i></div>
                                 <div class="earnings-flow-item">
