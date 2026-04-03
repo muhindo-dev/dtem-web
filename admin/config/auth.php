@@ -13,6 +13,41 @@ if (session_status() === PHP_SESSION_NONE) {
 require_once __DIR__ . '/../../config.php';
 require_once __DIR__ . '/../../functions.php';
 
+// Seed default admin user if none exists
+(function() {
+    try {
+        $pdo = getDBConnection();
+        if (!$pdo) return;
+
+        // Create admin_users table if it doesn't exist
+        $pdo->exec("CREATE TABLE IF NOT EXISTS admin_users (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            username VARCHAR(50) NOT NULL UNIQUE,
+            password VARCHAR(255) NOT NULL,
+            full_name VARCHAR(100) NOT NULL,
+            email VARCHAR(255) NOT NULL UNIQUE,
+            phone VARCHAR(50),
+            role ENUM('super_admin', 'admin', 'editor') DEFAULT 'admin',
+            status ENUM('active', 'inactive') DEFAULT 'active',
+            avatar VARCHAR(255),
+            last_login DATETIME,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+            INDEX idx_username (username),
+            INDEX idx_email (email),
+            INDEX idx_status (status)
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci");
+
+        $count = $pdo->query("SELECT COUNT(*) FROM admin_users")->fetchColumn();
+        if ($count == 0) {
+            $stmt = $pdo->prepare("INSERT INTO admin_users (username, password, full_name, email, role, status) VALUES (?, ?, ?, ?, 'super_admin', 'active')");
+            $stmt->execute(['admin', password_hash('4321', PASSWORD_DEFAULT), 'Super Admin', 'admin@dtehm.com']);
+        }
+    } catch (Exception $e) {
+        error_log("Admin seed error: " . $e->getMessage());
+    }
+})();
+
 /**
  * Check if admin is logged in
  * @return bool True if logged in, false otherwise
