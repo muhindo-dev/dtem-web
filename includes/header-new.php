@@ -7,13 +7,13 @@ if (!function_exists('getSetting')) {
 // Get commonly used settings
 $siteName = getSetting('site_name', 'DTEHM Health Ministries');
 $siteShortName = getSetting('site_short_name', 'DTEHM');
-$siteTagline = getSetting('site_tagline', 'Curing Lives with Ayurveda');
+$siteTagline = getSetting('site_tagline', 'Curing Lives with Ayukalash');
 $siteDescription = getSetting('site_description', 'DTEHM Health Ministries offers holistic healthcare solutions.');
 $siteLogo = getSiteLogo();
 $siteFavicon = getSiteFavicon();
 $logoIconClass = getSetting('logo_icon_class', 'fas fa-heartbeat');
 $metaTitle = getSetting('meta_title', $siteName);
-$metaKeywords = getSetting('meta_keywords', 'DTEHM, health ministries, Ayurveda, herbal medicine');
+$metaKeywords = getSetting('meta_keywords', 'DTEHM, health ministries, Ayukalash, herbal medicine');
 $googleAnalyticsId = getSetting('google_analytics_id');
 $enableAnalytics = getSetting('enable_google_analytics') == '1';
 $customHeadCode = getSetting('custom_head_code');

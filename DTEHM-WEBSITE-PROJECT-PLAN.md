@@ -85,7 +85,7 @@ The website is benchmarked from the ULFA Charity project. It already has:
 | **Brand Name** | United Love for All (ULFA) | DTEHM Health Ministries |
 | **Primary Color** | `#FFC107` (Yellow) / `#000000` (Black) | `#01399a` (Blue) |
 | **Secondary Colors** | Yellow/Black | `#6C757D` (Gray) / `#04a028` (Green) |
-| **Mission** | Orphanage/charity for children | Holistic healthcare, Ayurveda, herbal medicine |
+| **Mission** | Orphanage/charity for children | Holistic healthcare, Ayukalash, herbal medicine |
 | **Logo** | ULFA logo | DTEHM logo (to be added) |
 | **Contact Info** | ULFA Kasese details | DTEHM: +256 782 284788, dtehmhealth@gmail.com |
 | **Team Members** | ULFA staff (Muadhi, Amina, Ibrahim) | DTEHM team (Dr. Thembo Enostus, Nyamihanda Josephine, Kwesi Boison, Pr. Kule Henry) |
@@ -188,9 +188,9 @@ The website is benchmarked from the ULFA Charity project. It already has:
 
 ### 5.1 Organization Info
 - **Full Name:** Dr Thembo Enostus Health Ministries (DTEHM)
-- **Tagline:** "Curing lives with Ayurveda"
+- **Tagline:** "Curing lives with Ayukalash"
 - **Subtitle:** "Trusted Healthcare Solution"
-- **Focus:** Complementary, alternative, and herbal medicine; Ayurveda; naturopathy; personal skin care
+- **Focus:** Complementary, alternative, and herbal medicine; Ayukalash; naturopathy; personal skin care
 - **Founded:** 5+ years ago
 
 ### 5.2 Vision & Mission
@@ -399,7 +399,7 @@ Rhue, Rhue Rub, Six-C, Heart Care Tonic, Acidinol Syrup, Colicarmin Syrup, Livex
 | 14 | SEO & Performance | ✅ Complete | robots.txt, sitemap.php, Schema.org JSON-LD, .htaccess cache/gzip/security headers, CSS/JS minified |
 | 15 | Testing & QA | ✅ Complete | All pages render with 0 fatal errors |
 | — | product-detail.php (NEW) | ✅ Complete | Single product view with gallery, related products |
-| — | resources.php (NEW) | ✅ Complete | Health resources, Ayurveda info, daily tips, product categories |
+| — | resources.php (NEW) | ✅ Complete | Health resources, Ayukalash info, daily tips, product categories |
 | — | testimonials.php (NEW) | ✅ Complete | Customer testimonials, stats, stockist CTA, DB reviews integration |
 
 ---

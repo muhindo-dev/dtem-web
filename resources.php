@@ -16,18 +16,18 @@ include 'includes/header.php';
         </div>
     </div>
 
-    <!-- Ayurveda Introduction -->
+    <!-- Ayukalash Introduction -->
     <section class="section-pad">
         <div class="container">
             <div class="row align-items-center g-5">
                 <div class="col-lg-6">
-                    <span class="badge-pill" style="background: var(--light-blue); color: var(--primary-blue); margin-bottom: 1rem;">What is Ayurveda?</span>
+                    <span class="badge-pill" style="background: var(--light-blue); color: var(--primary-blue); margin-bottom: 1rem;">What is Ayukalash?</span>
                     <h2 class="section-heading">The Science of Life</h2>
                     <p style="color: var(--gray-text); line-height: 1.8; margin-bottom: 1rem;">
-                        Ayurveda is one of the world's oldest holistic healing systems, developed in India over 3,000 years ago. The word "Ayurveda" comes from Sanskrit meaning "knowledge of life." It is based on the belief that health and wellness depend on a delicate balance between the mind, body, and spirit.
+                        Ayukalash is a holistic healing system rooted in ancient traditions of natural medicine. The word "Ayukalash" represents the knowledge of life and wellness. It is based on the belief that health and wellness depend on a delicate balance between the mind, body, and spirit.
                     </p>
                     <p style="color: var(--gray-text); line-height: 1.8;">
-                        DTEHM Health Ministries brings the power of Ayurveda and herbal medicine to communities in Uganda, offering natural health solutions that complement modern medical care.
+                        DTEHM Health Ministries brings the power of Ayukalash and herbal medicine to communities in Uganda, offering natural health solutions that complement modern medical care.
                     </p>
                 </div>
                 <div class="col-lg-6">
@@ -79,7 +79,7 @@ include 'includes/header.php';
             <div class="row g-4">
                 <?php
                 $tips = [
-                    ['icon' => 'fa-glass-water', 'title' => 'Stay Hydrated', 'text' => 'Drink warm water throughout the day. In Ayurveda, warm water helps digestion and detoxification. Aim for at least 8 glasses daily.'],
+                    ['icon' => 'fa-glass-water', 'title' => 'Stay Hydrated', 'text' => 'Drink warm water throughout the day. In Ayukalash, warm water helps digestion and detoxification. Aim for at least 8 glasses daily.'],
                     ['icon' => 'fa-bed', 'title' => 'Quality Sleep', 'text' => 'Go to bed before 10 PM and wake up before 6 AM. Consistent sleep patterns strengthen immunity and restore the body naturally.'],
                     ['icon' => 'fa-carrot', 'title' => 'Eat Seasonal & Local', 'text' => 'Choose fresh, locally grown fruits and vegetables. Seasonal foods are naturally suited to your body\'s needs during different times of year.'],
                     ['icon' => 'fa-person-walking', 'title' => 'Daily Movement', 'text' => 'Walk for at least 30 minutes daily. Regular physical movement improves circulation, digestion, and mental clarity.'],

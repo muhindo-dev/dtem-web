@@ -465,31 +465,37 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST' &
 /**
  * Generate a CSRF token and store it in the session
  */
-function generateCsrfToken() {
-    if (empty($_SESSION['csrf_token'])) {
-        $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+if (!function_exists('generateCsrfToken')) {
+    function generateCsrfToken() {
+        if (empty($_SESSION['csrf_token'])) {
+            $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+        }
+        return $_SESSION['csrf_token'];
     }
-    return $_SESSION['csrf_token'];
 }
 
 /**
  * Output a hidden CSRF input field for forms
  */
-function csrfField() {
-    $token = generateCsrfToken();
-    return '<input type="hidden" name="csrf_token" value="' . htmlspecialchars($token) . '">';
+if (!function_exists('csrfField')) {
+    function csrfField() {
+        $token = generateCsrfToken();
+        return '<input type="hidden" name="csrf_token" value="' . htmlspecialchars($token) . '">';
+    }
 }
 
 /**
  * Validate a CSRF token from form submission
  */
-function validateCsrfToken() {
-    $token = $_POST['csrf_token'] ?? '';
-    if (empty($token) || empty($_SESSION['csrf_token']) || !hash_equals($_SESSION['csrf_token'], $token)) {
-        return false;
+if (!function_exists('validateCsrfToken')) {
+    function validateCsrfToken() {
+        $token = $_POST['csrf_token'] ?? '';
+        if (empty($token) || empty($_SESSION['csrf_token']) || !hash_equals($_SESSION['csrf_token'], $token)) {
+            return false;
+        }
+        // Regenerate token after successful validation
+        $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+        return true;
     }
-    // Regenerate token after successful validation
-    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
-    return true;
 }
 ?>

@@ -7,7 +7,7 @@ include 'functions.php';
 // Get settings
 $siteName = getSetting('site_name', 'DTEHM Health Ministries');
 $siteShortName = getSetting('site_short_name', 'DTEHM');
-$siteTagline = getSetting('site_tagline', 'Curing Lives with Ayurveda');
+$siteTagline = getSetting('site_tagline', 'Curing Lives with Ayukalash');
 $siteDescription = getSetting('site_description', '');
 $missionStatement = getSetting('mission_statement', '');
 $visionStatement = getSetting('vision_statement', '');
@@ -48,7 +48,7 @@ $teamMembers = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <span class="badge-dtehm"><?php echo htmlspecialchars($siteShortName); ?> HEALTH MINISTRIES</span>
                 </div>
                 <h1 class="hero-title" data-aos="fade-up" data-aos-delay="200">
-                    Curing Lives with<br><span class="highlight">Ayurveda</span>
+                    Curing Lives with<br><span class="highlight">Ayukalash</span>
                 </h1>
                 <p class="hero-lead" data-aos="fade-up" data-aos-delay="300">
                     Transforming the health landscape through complementary, alternative, and herbal medicine. 

@@ -37,7 +37,7 @@ $totalProducts = $pdo->query("SELECT COUNT(*) FROM products WHERE status = 'Acti
                     <span class="badge-section" style="display: inline-block; margin-bottom: 1rem;">ABOUT DTEHM</span>
                     <h2 class="section-heading" style="margin-bottom: 1.5rem;">Dr Thembo Enostus Health Ministries</h2>
                     <p style="color: var(--gray-text); line-height: 1.8; font-size: 1.05rem; margin-bottom: 1.5rem;">
-                        DTEHM Health Ministries is committed to transforming the health landscape through complementary, alternative, and herbal medicine. We specialize in holistic healthcare solutions including Ayurveda, naturopathy, and personal skin care products.
+                        DTEHM Health Ministries is committed to transforming the health landscape through complementary, alternative, and herbal medicine. We specialize in holistic healthcare solutions including Ayukalash, naturopathy, and personal skin care products.
                     </p>
                     <p style="color: var(--gray-text); line-height: 1.8; font-size: 1.05rem; margin-bottom: 1.5rem;">
                         Founded in <?php echo htmlspecialchars($foundingYear); ?> by Dr. Thembo Enostus Nzwende, our organization has grown to serve communities across the Kasese District through multiple branch offices, offering accessible healthcare products and services.
@@ -133,7 +133,7 @@ $totalProducts = $pdo->query("SELECT COUNT(*) FROM products WHERE status = 'Acti
                     <div class="service-card text-center">
                         <div class="service-icon mx-auto"><i class="fas fa-seedling"></i></div>
                         <h3>Natural Solutions</h3>
-                        <p>Harnessing the power of nature through Ayurveda, herbal treatments, and naturopathy.</p>
+                        <p>Harnessing the power of nature through Ayukalash, herbal treatments, and naturopathy.</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6">
